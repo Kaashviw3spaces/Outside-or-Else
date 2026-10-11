@@ -1,0 +1,560 @@
+{
+  "timestamp": "2026-10-11T07:34:50.703Z",
+  "method": "Hub API blob sizes and small JSON configs only; no ONNX, data shards, safetensors or tokenizer weights fetched",
+  "models": [
+    {
+      "repo": "onnx-community/Qwen3-1.7B-ONNX",
+      "revision": "b85539623180ae64303f37373d942cb0595ca44d",
+      "metadataUrl": "https://huggingface.co/api/models/onnx-community/Qwen3-1.7B-ONNX?blobs=true",
+      "configUrl": "https://huggingface.co/onnx-community/Qwen3-1.7B-ONNX/resolve/b85539623180ae64303f37373d942cb0595ca44d/config.json",
+      "conversionLicense": null,
+      "sourceRepo": "Qwen/Qwen3-1.7B",
+      "sourceRevision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+      "sourceUrl": "https://huggingface.co/api/models/Qwen/Qwen3-1.7B",
+      "license": "apache-2.0",
+      "config": {
+        "architectures": [
+          "Qwen3ForCausalLM"
+        ],
+        "attention_bias": false,
+        "attention_dropout": 0,
+        "bos_token_id": 151643,
+        "eos_token_id": 151645,
+        "head_dim": 128,
+        "hidden_act": "silu",
+        "hidden_size": 2048,
+        "initializer_range": 0.02,
+        "intermediate_size": 6144,
+        "max_position_embeddings": 40960,
+        "max_window_layers": 28,
+        "model_type": "qwen3",
+        "num_attention_heads": 16,
+        "num_hidden_layers": 28,
+        "num_key_value_heads": 8,
+        "rms_norm_eps": 0.000001,
+        "rope_scaling": null,
+        "rope_theta": 1000000,
+        "sliding_window": null,
+        "tie_word_embeddings": true,
+        "torch_dtype": "bfloat16",
+        "transformers_version": "4.52.0.dev0",
+        "use_cache": true,
+        "use_sliding_window": false,
+        "vocab_size": 151936,
+        "transformers.js_config": {
+          "kv_cache_dtype": {
+            "q4f16": "float16",
+            "fp16": "float16"
+          },
+          "use_external_data_format": {
+            "model.onnx": true,
+            "model_fp16.onnx": true
+          }
+        }
+      },
+      "tokenizerClass": "Qwen2Tokenizer",
+      "hasChatTemplate": true,
+      "thinkingSwitch": true,
+      "files": [
+        {
+          "path": ".gitattributes",
+          "bytes": 1737
+        },
+        {
+          "path": "README.md",
+          "bytes": 523
+        },
+        {
+          "path": "added_tokens.json",
+          "bytes": 707
+        },
+        {
+          "path": "chat_template.jinja",
+          "bytes": 4116
+        },
+        {
+          "path": "config.json",
+          "bytes": 943
+        },
+        {
+          "path": "generation_config.json",
+          "bytes": 219
+        },
+        {
+          "path": "merges.txt",
+          "bytes": 1671853
+        },
+        {
+          "path": "onnx/model.onnx",
+          "bytes": 288490,
+          "lfsSha256": "620bb4903d06add8809ee6baa58d00bb6428c05554f9d5e8da7b028a7aa4dae4"
+        },
+        {
+          "path": "onnx/model.onnx_data",
+          "bytes": 6903242752,
+          "lfsSha256": "79f764cc5ef1971f9875965b605e157e294829c850e223704640eafb09c94ad1"
+        },
+        {
+          "path": "onnx/model_bnb4.onnx",
+          "bytes": 2059134157,
+          "lfsSha256": "dc111227735e3a46b62da7954057e599a4e6903df73cac3a44c0e5e20818a449"
+        },
+        {
+          "path": "onnx/model_fp16.onnx",
+          "bytes": 275553,
+          "lfsSha256": "4962fda65ca44ce1a47eb4af5c2af6b1e643417640819c298df12ea9b6eea955"
+        },
+        {
+          "path": "onnx/model_fp16.onnx_data",
+          "bytes": 3451621376,
+          "lfsSha256": "84101d8acb313750e0d68a745fa134511945116d126f76d85b62ef9124d72aac"
+        },
+        {
+          "path": "onnx/model_int8.onnx",
+          "bytes": 1742387752,
+          "lfsSha256": "12daaa4c9201b0abe254860c0b5f8b7a69d7f316c9dfe184d165fb58184d7820"
+        },
+        {
+          "path": "onnx/model_q4.onnx",
+          "bytes": 2147212861,
+          "lfsSha256": "3763020b62164be3d9c31dc6b15aa042052f5a9da846e991f6c45e0f1a6dced7"
+        },
+        {
+          "path": "onnx/model_q4f16.onnx",
+          "bytes": 1426069098,
+          "lfsSha256": "fb85b44defdf43ace50c7a4937127e889b9f8a0483eb87a6c4151a815c5da3b5"
+        },
+        {
+          "path": "onnx/model_quantized.onnx",
+          "bytes": 1742387852,
+          "lfsSha256": "202ed81928b7f34c31505b46479c310e131fec307a045eab2537e7c494feb427"
+        },
+        {
+          "path": "onnx/model_uint8.onnx",
+          "bytes": 1742387852,
+          "lfsSha256": "202ed81928b7f34c31505b46479c310e131fec307a045eab2537e7c494feb427"
+        },
+        {
+          "path": "onnxruntime/cpu_and_mobile/cpu-int4-kld-block-128/chat_template.jinja",
+          "bytes": 4168
+        },
+        {
+          "path": "onnxruntime/cpu_and_mobile/cpu-int4-kld-block-128/config.json",
+          "bytes": 8697
+        },
+        {
+          "path": "onnxruntime/cpu_and_mobile/cpu-int4-kld-block-128/genai_config.json",
+          "bytes": 1520
+        },
+        {
+          "path": "onnxruntime/cpu_and_mobile/cpu-int4-kld-block-128/model.onnx",
+          "bytes": 1408943689,
+          "lfsSha256": "9fddc5a0a7f9c51132c376db8fe44774b17a8e42d721c4d289ade16af87da0bd"
+        },
+        {
+          "path": "onnxruntime/cpu_and_mobile/cpu-int4-kld-block-128/tokenizer.json",
+          "bytes": 11422648,
+          "lfsSha256": "979d160e081df25a1bf7f4e2e8f4c441b5dfdc9a8e84aec9f32e80445e1b59b8"
+        },
+        {
+          "path": "onnxruntime/cpu_and_mobile/cpu-int4-kld-block-128/tokenizer_config.json",
+          "bytes": 663
+        },
+        {
+          "path": "onnxruntime/cuda/cuda-int4-kld-block-128/chat_template.jinja",
+          "bytes": 4168
+        },
+        {
+          "path": "onnxruntime/cuda/cuda-int4-kld-block-128/config.json",
+          "bytes": 8697
+        },
+        {
+          "path": "onnxruntime/cuda/cuda-int4-kld-block-128/genai_config.json",
+          "bytes": 1765
+        },
+        {
+          "path": "onnxruntime/cuda/cuda-int4-kld-block-128/model.onnx",
+          "bytes": 1371328073,
+          "lfsSha256": "94ee37f1fabe304cd3046803830724f9be8b520dd0400bcd421185c644041096"
+        },
+        {
+          "path": "onnxruntime/cuda/cuda-int4-kld-block-128/tokenizer.json",
+          "bytes": 11422648,
+          "lfsSha256": "979d160e081df25a1bf7f4e2e8f4c441b5dfdc9a8e84aec9f32e80445e1b59b8"
+        },
+        {
+          "path": "onnxruntime/cuda/cuda-int4-kld-block-128/tokenizer_config.json",
+          "bytes": 663
+        },
+        {
+          "path": "onnxruntime/webgpu/webgpu-int4-kld-block-32/chat_template.jinja",
+          "bytes": 4168
+        },
+        {
+          "path": "onnxruntime/webgpu/webgpu-int4-kld-block-32/config.json",
+          "bytes": 8707
+        },
+        {
+          "path": "onnxruntime/webgpu/webgpu-int4-kld-block-32/genai_config.json",
+          "bytes": 1752
+        },
+        {
+          "path": "onnxruntime/webgpu/webgpu-int4-kld-block-32/model.onnx",
+          "bytes": 1478657378,
+          "lfsSha256": "46d813105b1ae677c28f2e83a79de0d2db1b84ec6a5e344a6fcfa8ce3eba90bf"
+        },
+        {
+          "path": "onnxruntime/webgpu/webgpu-int4-kld-block-32/tokenizer.json",
+          "bytes": 11422648,
+          "lfsSha256": "979d160e081df25a1bf7f4e2e8f4c441b5dfdc9a8e84aec9f32e80445e1b59b8"
+        },
+        {
+          "path": "onnxruntime/webgpu/webgpu-int4-kld-block-32/tokenizer_config.json",
+          "bytes": 663
+        },
+        {
+          "path": "special_tokens_map.json",
+          "bytes": 613
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 9117040,
+          "lfsSha256": "e7a95fce95bf5b0946d0ddb3f9d7caa030b7e850bbe92b0edb26bcf563e9f3d5"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 10360
+        },
+        {
+          "path": "vocab.json",
+          "bytes": 2776833
+        }
+      ]
+    },
+    {
+      "repo": "onnx-community/Qwen2.5-1.5B-Instruct",
+      "revision": "d54957e3af1be04546436e874a60fe386041b244",
+      "metadataUrl": "https://huggingface.co/api/models/onnx-community/Qwen2.5-1.5B-Instruct?blobs=true",
+      "configUrl": "https://huggingface.co/onnx-community/Qwen2.5-1.5B-Instruct/resolve/d54957e3af1be04546436e874a60fe386041b244/config.json",
+      "conversionLicense": null,
+      "sourceRepo": "Qwen/Qwen2.5-1.5B-Instruct",
+      "sourceRevision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "sourceUrl": "https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct",
+      "license": "apache-2.0",
+      "config": {
+        "_name_or_path": "Qwen/Qwen2.5-1.5B-Instruct",
+        "architectures": [
+          "Qwen2ForCausalLM"
+        ],
+        "attention_dropout": 0,
+        "bos_token_id": 151643,
+        "eos_token_id": 151645,
+        "hidden_act": "silu",
+        "hidden_size": 1536,
+        "initializer_range": 0.02,
+        "intermediate_size": 8960,
+        "max_position_embeddings": 32768,
+        "max_window_layers": 21,
+        "model_type": "qwen2",
+        "num_attention_heads": 12,
+        "num_hidden_layers": 28,
+        "num_key_value_heads": 2,
+        "rms_norm_eps": 0.000001,
+        "rope_theta": 1000000,
+        "sliding_window": null,
+        "tie_word_embeddings": true,
+        "transformers_version": "4.43.4",
+        "use_cache": true,
+        "use_sliding_window": false,
+        "vocab_size": 151936,
+        "transformers.js_config": {
+          "use_external_data_format": {
+            "model.onnx": true,
+            "model_fp16.onnx": true
+          }
+        }
+      },
+      "tokenizerClass": "Qwen2Tokenizer",
+      "hasChatTemplate": true,
+      "thinkingSwitch": false,
+      "files": [
+        {
+          "path": ".gitattributes",
+          "bytes": 1638
+        },
+        {
+          "path": "README.md",
+          "bytes": 545
+        },
+        {
+          "path": "added_tokens.json",
+          "bytes": 605
+        },
+        {
+          "path": "config.json",
+          "bytes": 809
+        },
+        {
+          "path": "generation_config.json",
+          "bytes": 242
+        },
+        {
+          "path": "merges.txt",
+          "bytes": 1671853
+        },
+        {
+          "path": "onnx/model.onnx",
+          "bytes": 1057843,
+          "lfsSha256": "8f7da5d0bb5e5b6eba0ba0e9c006fcbc8b670134405ef5e02aaaf738361e2074"
+        },
+        {
+          "path": "onnx/model.onnx_data",
+          "bytes": 6208411648,
+          "lfsSha256": "7111acf0e546fe192035357890402832315b4c243e56b01b47ce9358285fc82e"
+        },
+        {
+          "path": "onnx/model_bnb4.onnx",
+          "bytes": 1705680982,
+          "lfsSha256": "5934a71de35dba9b4987d708c18c1c8b58f10f6b63d54729ec0a6fca9220e921"
+        },
+        {
+          "path": "onnx/model_fp16.onnx",
+          "bytes": 1098300,
+          "lfsSha256": "5b8e920affc39b892c54cb2109f9357405f45aa1a055136fcf2f598cae14b659"
+        },
+        {
+          "path": "onnx/model_fp16.onnx_data",
+          "bytes": 3104177152,
+          "lfsSha256": "59e25350a4cbce424b42400b779735699aff5d3c7018fa1bca77a7c7274733c9"
+        },
+        {
+          "path": "onnx/model_int8.onnx",
+          "bytes": 1578954293,
+          "lfsSha256": "ee8364373c6fb35644c67fd8127cbee6c3d98ac889f8bb32ea4ac04a29650787"
+        },
+        {
+          "path": "onnx/model_q4.onnx",
+          "bytes": 1787566590,
+          "lfsSha256": "70c24509f760fed9a8f50391165c46a87660197028a42c4547763f1c173ddea6"
+        },
+        {
+          "path": "onnx/model_q4f16.onnx",
+          "bytes": 1221878940,
+          "lfsSha256": "19dec9f63488016185ba997d5e4492b5ac5b4f7ef1abb45243a91de958838dcd"
+        },
+        {
+          "path": "onnx/model_quantized.onnx",
+          "bytes": 1578954293,
+          "lfsSha256": "ee8364373c6fb35644c67fd8127cbee6c3d98ac889f8bb32ea4ac04a29650787"
+        },
+        {
+          "path": "onnx/model_uint8.onnx",
+          "bytes": 1578954395,
+          "lfsSha256": "398728ae69ffe9cdfea5dccf20f12b2862c154c5c665c48be9512a19f900d98e"
+        },
+        {
+          "path": "quantize_config.json",
+          "bytes": 285
+        },
+        {
+          "path": "special_tokens_map.json",
+          "bytes": 613
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 7031673
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 7849
+        },
+        {
+          "path": "vocab.json",
+          "bytes": 2776833
+        }
+      ]
+    },
+    {
+      "repo": "HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "revision": "31b70e2e869a7173562077fd711b654946d38674",
+      "metadataUrl": "https://huggingface.co/api/models/HuggingFaceTB/SmolLM2-1.7B-Instruct?blobs=true",
+      "configUrl": "https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct/resolve/31b70e2e869a7173562077fd711b654946d38674/config.json",
+      "conversionLicense": "apache-2.0",
+      "sourceRepo": "HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "sourceRevision": "31b70e2e869a7173562077fd711b654946d38674",
+      "sourceUrl": "https://huggingface.co/api/models/HuggingFaceTB/SmolLM2-1.7B-Instruct",
+      "license": "apache-2.0",
+      "config": {
+        "architectures": [
+          "LlamaForCausalLM"
+        ],
+        "attention_bias": false,
+        "attention_dropout": 0,
+        "bos_token_id": 1,
+        "eos_token_id": 2,
+        "hidden_act": "silu",
+        "hidden_size": 2048,
+        "initializer_range": 0.02,
+        "intermediate_size": 8192,
+        "max_position_embeddings": 8192,
+        "mlp_bias": false,
+        "model_type": "llama",
+        "num_attention_heads": 32,
+        "num_hidden_layers": 24,
+        "num_key_value_heads": 32,
+        "pad_token_id": 2,
+        "pretraining_tp": 1,
+        "rms_norm_eps": 0.00001,
+        "rope_scaling": null,
+        "rope_theta": 130000,
+        "tie_word_embeddings": true,
+        "torch_dtype": "bfloat16",
+        "transformers_version": "4.42.3",
+        "transformers.js_config": {
+          "dtype": "q4",
+          "kv_cache_dtype": {
+            "q4f16": "float16",
+            "fp16": "float16"
+          },
+          "use_external_data_format": {
+            "model.onnx": true,
+            "model_fp16.onnx": true
+          }
+        },
+        "use_cache": true,
+        "vocab_size": 49152
+      },
+      "tokenizerClass": "GPT2Tokenizer",
+      "hasChatTemplate": true,
+      "thinkingSwitch": false,
+      "files": [
+        {
+          "path": ".gitattributes",
+          "bytes": 1638
+        },
+        {
+          "path": "README.md",
+          "bytes": 14928
+        },
+        {
+          "path": "all_results.json",
+          "bytes": 785
+        },
+        {
+          "path": "config.json",
+          "bytes": 908
+        },
+        {
+          "path": "eval_results.json",
+          "bytes": 587
+        },
+        {
+          "path": "generation_config.json",
+          "bytes": 132
+        },
+        {
+          "path": "instructions_function_calling.md",
+          "bytes": 7279
+        },
+        {
+          "path": "merges.txt",
+          "bytes": 466391
+        },
+        {
+          "path": "model.safetensors",
+          "bytes": 3422777952,
+          "lfsSha256": "f55217be716b6a997b97b9d8d7eb6fad02e00858f5010ec24f64603c3a98a0e8"
+        },
+        {
+          "path": "onnx/model.onnx",
+          "bytes": 165580,
+          "lfsSha256": "c538daa78f811830dc9028aa228a63a218147ab478c0c65ef6e2d8cab532380a"
+        },
+        {
+          "path": "onnx/model.onnx_data",
+          "bytes": 6847602688,
+          "lfsSha256": "023686a59a534e45af70bc5f99ae70e592481701680591f9844fc140a3db220a"
+        },
+        {
+          "path": "onnx/model_bnb4.onnx",
+          "bytes": 1311307655,
+          "lfsSha256": "ac7400ca170e6644d95d26394846d2cce8083298e8519b1df7ac1eaa0ab2b5b6"
+        },
+        {
+          "path": "onnx/model_fp16.onnx",
+          "bytes": 1326807956,
+          "lfsSha256": "3d891d77661f6339f727b3188f1c21b1429a1e4e55c40d1f60f85048b00a4348"
+        },
+        {
+          "path": "onnx/model_fp16.onnx_data",
+          "bytes": 2097152000,
+          "lfsSha256": "5f48c05c14ed97738f8dc5854c20c229ddc8661f43fa914085843901a4ba8740"
+        },
+        {
+          "path": "onnx/model_int8.onnx",
+          "bytes": 1714119778,
+          "lfsSha256": "db5cb9057f4e7014f00c38fd9764f0103e60bb4d145ad600b7144625f0d56930"
+        },
+        {
+          "path": "onnx/model_q4.onnx",
+          "bytes": 1411969607,
+          "lfsSha256": "467b7b8f62d99f184d3628d24b8d65c151e331695f6e9ea997616c4e279e9a51"
+        },
+        {
+          "path": "onnx/model_q4f16.onnx",
+          "bytes": 1108730338,
+          "lfsSha256": "d94946187fb5f27579f3db4ba21fb7f7466c7cbd18956bd420d3981f75282f9c"
+        },
+        {
+          "path": "onnx/model_quantized.onnx",
+          "bytes": 1714119846,
+          "lfsSha256": "b1110061268f161512c234c4d43cd9dbe61eeb1454e9b94b652edf4de55ae51c"
+        },
+        {
+          "path": "onnx/model_uint8.onnx",
+          "bytes": 1714119846,
+          "lfsSha256": "b1110061268f161512c234c4d43cd9dbe61eeb1454e9b94b652edf4de55ae51c"
+        },
+        {
+          "path": "runs/Oct31_06-24-59_ip-26-0-174-36/events.out.tfevents.1730356365.ip-26-0-174-36.3169719.0",
+          "bytes": 114828,
+          "lfsSha256": "e6bfce1916438dd2e6553aa0a62d418087b3ae04f8af75e714ad1f01b7663db6"
+        },
+        {
+          "path": "runs/Oct31_06-24-59_ip-26-0-174-36/events.out.tfevents.1730363825.ip-26-0-174-36.3169719.1",
+          "bytes": 828,
+          "lfsSha256": "b3d7723fd0715ce6dcbccf7bb2097f59490b0ac670f798f5378ef5abb7d1301d"
+        },
+        {
+          "path": "special_tokens_map.json",
+          "bytes": 655
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 2104556
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 3764
+        },
+        {
+          "path": "train_results.json",
+          "bytes": 232
+        },
+        {
+          "path": "trainer_state.json",
+          "bytes": 86369
+        },
+        {
+          "path": "training_args.bin",
+          "bytes": 6520,
+          "lfsSha256": "7649586c424c337f6c403fdb617ac9d954daf9a7192f3afe5b6318f37e9bb19e"
+        },
+        {
+          "path": "vocab.json",
+          "bytes": 800662
+        }
+      ]
+    }
+  ]
+}

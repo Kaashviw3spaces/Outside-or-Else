@@ -1,0 +1,24 @@
+.challenge-settings p { color:var(--muted); font-size:12px; line-height:1.8; margin:12px 0; }
+.challenge-controls { display:flex; flex-wrap:wrap; gap:8px; }
+.challenge-confirm { padding:12px; border:1px solid var(--line); border-radius:16px; }
+.challenge-status { display:block; color:var(--sage-ink); font-size:10px; line-height:1.6; max-width:190px; margin:4px 0; }
+.challenge-status>span { display:block; font-size:9px; }
+.farewell-screen { min-height:calc(100svh - 80px); padding-bottom:calc(110px + env(safe-area-inset-bottom)); background:var(--canvas); }
+.farewell-screen>.cozy-room { position:relative; height:330px; overflow:hidden; }
+.farewell-screen>.cozy-room .speech-bubble { top:12px; left:8%; right:8%; width:84%; font-size:12px; }
+.farewell-pet { position:absolute; width:200px; left:calc(50% - 100px); bottom:6px; animation:gentle-farewell 4s ease-in-out infinite; }
+.farewell-pet .pet-character { width:100%; height:auto; }
+.farewell-copy { padding:22px var(--page-gutter); }
+.farewell-copy h1 { font-size:30px; margin:10px 0; }
+.farewell-copy p { font-size:13px; line-height:1.8; color:var(--muted); margin:16px 0; }
+.farewell-copy .text-button { display:block; margin:8px auto; }
+.readoption-screen label { display:block; margin:20px 0 10px; }
+.readoption-screen input { font:inherit; font-size:16px; width:100%; background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:14px; padding:14px; }
+.readoption-screen .primary-button { margin-top:20px; }
+.legacy-chapter { grid-column:1/-1; margin:12px 0; padding:16px 0; border-bottom:1px solid var(--line); }
+.legacy-chapter h2 { font-size:24px; }
+.legacy-generation { display:contents; }
+.legacy-chapter p { font-size:12px; color:var(--muted); margin:8px 0; line-height:1.8; }
+@keyframes gentle-farewell { 50% { transform:translateY(-3px) rotate(-1deg); } }
+@media(prefers-reduced-motion:reduce) { .farewell-pet { animation:none; } }
+@media(max-width:359px) { .farewell-screen>.cozy-room { height:300px; } .farewell-pet { width:180px; left:calc(50% - 90px); } .room-hud .challenge-status>span { display:none; } }

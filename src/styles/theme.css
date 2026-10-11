@@ -1,0 +1,270 @@
+/* Centralized palette: all game UI and environment surfaces consume these tokens. */
+:root, .theme-environment[data-theme='light'] {
+  color-scheme: light;
+  --theme-duration: 600ms;
+  --canvas: #fff4e6;
+  --outer: #ebe9df;
+  --ink: #644c41;
+  --muted: #806b5b;
+  --subtle: #796650;
+  --sage-ink: #58684f;
+  --accent: #a8c5a0;
+  --accent-hover: #99b990;
+  --accent-ink: #344c36;
+  --selected-ink: #526d4d;
+  --selected-surface: #e5ecdb;
+  --sage-surface: #e7ead9;
+  --selected-line: #8ba57e;
+  --surface: #fffaf3;
+  --paper: #fffaf1;
+  --surface-soft: #f3ecdc;
+  --photo-surface: #eeeade;
+  --nav-surface: #fff9f0f5;
+  --bubble-surface: #fffaf2ed;
+  --line: #dfd5c2;
+  --line-soft: #76574b15;
+  --shadow-soft: #76574b09;
+  --shadow: #76574b30;
+  --scrim: #443d3866;
+  --focus: #548b94;
+  --splash-sky: #a9d9e8;
+  --splash-ink: #415e65;
+  --glass: #ffffff30;
+  --glass-line: #ffffff40;
+  --gold-surface: #f8e4bb;
+  --gold-ink: #a58b5d;
+  --peach: #ffd9c8;
+  --feed-surface: #f4e4bd;
+  --adventure-surface: #d3e3c4;
+  --sleep-surface: #dbe3ef;
+  --love: #dba59a;
+  --love-track: #eaded0;
+  --toggle-off: #d7cbbc;
+  --toggle-thumb: #fffaf3;
+  --tape: #e6c8a8b0;
+  --warm-accent: #92654c;
+  --wall-top: #f6e8d7;
+  --wall-bottom: #f2ddc8;
+  --sky-top: #a9d9e8;
+  --sky-bottom: #e6f0da;
+  --floor: #e3c5a5;
+  --floor-line: #c7aa8e;
+  --window-light: #fff8d7;
+  --wood: #b8977e;
+  --window-frame: #fff4e6;
+  --distant-hill: #a8c5a0;
+  --plant-light: #94af88;
+  --plant: #86a17b;
+  --terracotta: #cf977d;
+  --pot-rim: #dbab90;
+  --book-blue: #a9d9e8;
+  --book-gold: #e7bb88;
+  --picture-paper: #fff4e6;
+  --room-shadow: #c6ac94;
+  --bed-edge: #c1cdb0;
+  --bed: #d4dcc4;
+  --sun: #fff1ba;
+  --moon: #b5cbe8;
+  --cloud: #fff9ee;
+  --landscape-sky: #c1e1e8;
+  --hill-back: #b2cba9;
+  --hill-front: #87a780;
+  --path: #f7e5c8;
+  --tree: #739571;
+  --memory-hill: #c4d2b8;
+  --memory-front: #9eb691;
+}
+:root[data-theme='dark'], .theme-environment[data-theme='dark'] {
+  color-scheme: dark;
+  --canvas: #18243d;
+  --outer: #101a2d;
+  --ink: #f7ebd9;
+  --muted: #c3c9de;
+  --subtle: #b3bdd4;
+  --sage-ink: #b7cdbb;
+  --accent: #a8c5a0;
+  --accent-hover: #bfd2b8;
+  --accent-ink: #233b2d;
+  --selected-ink: #d8e9d5;
+  --selected-surface: #334d49;
+  --sage-surface: #293e48;
+  --selected-line: #99b59c;
+  --surface: #243451;
+  --paper: #293953;
+  --surface-soft: #2c3b54;
+  --photo-surface: #1d2b44;
+  --nav-surface: #1d2c46f5;
+  --bubble-surface: #30435ff5;
+  --line: #455571;
+  --line-soft: #b5cbe825;
+  --shadow-soft: #070e1e30;
+  --shadow: #070e1e60;
+  --scrim: #070e1e99;
+  --focus: #b5cbe8;
+  --splash-sky: #18243d;
+  --splash-ink: #b5cbe8;
+  --glass: #b5cbe812;
+  --glass-line: #b5cbe830;
+  --gold-surface: #4a4053;
+  --gold-ink: #e8cda6;
+  --peach: #654a58;
+  --feed-surface: #514559;
+  --adventure-surface: #344d49;
+  --sleep-surface: #435478;
+  --love: #c4a5ca;
+  --love-track: #34425d;
+  --toggle-off: #4d5a73;
+  --toggle-thumb: #f7ebd9;
+  --tape: #8c83b580;
+  --warm-accent: #d8b5a0;
+  --wall-top: #243451;
+  --wall-bottom: #303c59;
+  --sky-top: #111d36;
+  --sky-bottom: #293b5e;
+  --floor: #28354b;
+  --floor-line: #52607a;
+  --window-light: #b5cbe8;
+  --wood: #67728e;
+  --window-frame: #8793ae;
+  --distant-hill: #394e69;
+  --plant-light: #7b998f;
+  --plant: #638777;
+  --terracotta: #a67874;
+  --pot-rim: #bd8d85;
+  --book-blue: #829abd;
+  --book-gold: #c5a58c;
+  --picture-paper: #c0bdc5;
+  --room-shadow: #0e192d;
+  --bed-edge: #686e8c;
+  --bed: #9490a8;
+  --sun: #fff1ba;
+  --moon: #b5cbe8;
+  --cloud: #c4d5ee;
+  --landscape-sky: #1b2b46;
+  --hill-back: #405776;
+  --hill-front: #2e465e;
+  --path: #8993ac;
+  --tree: #526f6a;
+  --memory-hill: #596585;
+  --memory-front: #455978;
+}
+
+/* Smooth palette changes never interfere with the pet's transform animations. */
+:where(html, body, .theme-environment, .app-shell, .app-shell *) {
+  transition-property: background-color, color, border-color, box-shadow, fill, stroke, stop-color;
+  transition-duration: var(--theme-duration);
+  transition-timing-function: ease;
+}
+:root, .theme-environment[data-theme='light'] {
+  --day-opacity: 1;
+  --night-opacity: 0;
+  --ambient-play-state: paused;
+  --pet-cool-rim: #b5cbe800;
+  --pet-warm-rim: #ffd9a300;
+  --splash-title: #fff4e6;
+  --bed-halo-opacity: 0;
+}
+:root[data-theme='dark'], .theme-environment[data-theme='dark'] {
+  --day-opacity: 0;
+  --night-opacity: 1;
+  --ambient-play-state: running;
+  --pet-cool-rim: #b5cbe838;
+  --pet-warm-rim: #ffd9a333;
+  --splash-title: #b5cbe8;
+  --bed-halo-opacity: 1;
+}
+.day-scenery { opacity: var(--day-opacity); }
+.night-scenery { opacity: var(--night-opacity); }
+.day-scenery, .night-scenery { transition: opacity var(--theme-duration) ease; }
+.twinkle-star { opacity: .85; animation: star-twinkle 5s ease-in-out infinite; animation-play-state: var(--ambient-play-state); }
+.firefly { opacity: .65; animation: firefly-drift 8s ease-in-out infinite; animation-play-state: var(--ambient-play-state); }
+.pet-character { filter: drop-shadow(-2px -3px 4px var(--pet-cool-rim)) drop-shadow(2px 4px 5px var(--pet-warm-rim)); transition: filter var(--theme-duration) ease; }
+.pet-touch::before { content: ''; position: absolute; left: 10%; right: 5%; bottom: 0; height: 55%; border-radius: 50%; pointer-events: none; background: radial-gradient(ellipse, #ffd9a31c 0%, #8c83b510 40%, transparent 72%); opacity: var(--bed-halo-opacity); transition: opacity var(--theme-duration) ease; }
+.pet-touch .pet-character { position: relative; }
+.splash-sky { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.splash-copy { position: relative; }
+.splash h1 span { color: var(--splash-title); }
+.splash h1 .title-dot { color: var(--ink); }
+.skip-splash { z-index: 2; }
+.appearance-section { border: 0; padding: 0; min-width: 0; }
+.appearance-section legend { font:700 24px 'Gaegu', sans-serif; padding: 0; }
+.appearance-description { font-size: 11px; color: var(--muted); margin-top: 9px; line-height: 1.7; }
+.appearance-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 15px; }
+.appearance-option { position: relative; margin: 0 !important; padding: 16px 4px; min-height: 88px; border: 1.5px solid var(--line); border-radius: 17px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; font-size: 11px; color: var(--muted); background: var(--surface); cursor: pointer; }
+.appearance-option.selected { background: var(--selected-surface); border-color: var(--selected-line); color: var(--ink); }
+.appearance-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.appearance-option:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 4px; }
+.appearance-option .icon { width: 23px; height: 23px; }
+.appearance-status { font-size: 10px; line-height: 1.7; color: var(--subtle); margin-top: 12px; min-height: 34px; }
+@keyframes star-twinkle { 0%, 100% { opacity: .4; } 50% { opacity: 1; } }
+@keyframes firefly-drift { 0%, 100% { opacity: .3; transform: translate(0, 0); } 40% { opacity: .85; transform: translate(5px, -8px); } 75% { opacity: .45; transform: translate(-4px, -14px); } }
+@media (prefers-reduced-motion: reduce) { :root, .theme-environment[data-theme='light'] { --theme-duration: 0ms; } .twinkle-star, .firefly { animation: none; } }
+
+/* Dynamic phases refine the existing Light/Dark palette; pet artwork stays untouched. */
+:root, .theme-environment[data-theme='light'] { --moon-opacity: 1; --firefly-opacity: 1; --sun-rays-opacity: .12; }
+.moon-scenery { opacity: var(--moon-opacity); }
+.fireflies { opacity: calc(var(--night-opacity) * var(--firefly-opacity)); }
+.sun-rays { opacity: var(--sun-rays-opacity); }
+.moon-scenery, .fireflies, .sun-rays { transition: opacity var(--theme-duration) ease; }
+:root[data-appearance='dynamic'][data-phase='sunrise'], .theme-environment[data-appearance='dynamic'][data-phase='sunrise'] {
+  --canvas: #fff0e7; --sky-top: #eab5c6; --sky-bottom: #ffd1a4;
+  --landscape-sky: #eab5c6; --splash-sky: #eab5c6; --splash-title: #744b4c;
+  --wall-top: #fae3d5; --wall-bottom: #efc9ae; --floor: #dfb695;
+  --sun: #ffe7af; --window-light: #ffd6a1; --distant-hill: #b5b69e;
+  --hill-back: #c9bca3; --hill-front: #99a589;
+  --pet-cool-rim: #eab5c615; --pet-warm-rim: #ffd19b40; --bed-halo-opacity: .15;
+  --sun-rays-opacity: .45;
+}
+:root[data-appearance='dynamic'][data-phase='morning'], .theme-environment[data-appearance='dynamic'][data-phase='morning'] {
+  --sky-top: #a9d9e8; --sky-bottom: #e2f1e5; --landscape-sky: #b8e0ed;
+  --splash-sky: #b8e0ed; --splash-title: #76574b;
+  --wall-top: #fff0df; --wall-bottom: #f3dfc9; --window-light: #fff2c8;
+  --pet-warm-rim: #ffd9a31e; --sun-rays-opacity: .2;
+}
+:root[data-appearance='dynamic'][data-phase='afternoon'], .theme-environment[data-appearance='dynamic'][data-phase='afternoon'] {
+  --sky-top: #88cce7; --sky-bottom: #d3e9e3; --landscape-sky: #a2d5e9;
+  --splash-sky: #a2d5e9; --splash-title: #76574b;
+  --sun: #fff2b7; --window-light: #fff3c9;
+  --pet-cool-rim: #b5cbe810; --pet-warm-rim: #ffd9a300; --sun-rays-opacity: .22;
+}
+:root[data-appearance='dynamic'][data-phase='golden-hour'], .theme-environment[data-appearance='dynamic'][data-phase='golden-hour'] {
+  --canvas: #fff0df; --sky-top: #e8a68d; --sky-bottom: #f4ca87;
+  --landscape-sky: #e8a68d; --splash-sky: #e8a68d; --splash-title: #795440;
+  --wall-top: #f7ddbe; --wall-bottom: #ecc39f; --floor: #d8ad87;
+  --sun: #ffe09a; --window-light: #ffcc87; --distant-hill: #b6aa89;
+  --hill-back: #c5af90; --hill-front: #a29578; --plant-light: #a8ae83;
+  --pet-cool-rim: #efa98315; --pet-warm-rim: #ffbd814d; --bed-halo-opacity: .3;
+  --sun-rays-opacity: .6;
+}
+:root[data-appearance='dynamic'][data-phase='blue-hour'], .theme-environment[data-appearance='dynamic'][data-phase='blue-hour'] {
+  --sky-top: #53658f; --sky-bottom: #ad91b4; --landscape-sky: #647497;
+  --splash-sky: #293653; --wall-top: #3b4665; --wall-bottom: #565273;
+  --floor: #39445e; --window-light: #cbc6ee; --distant-hill: #4b5674;
+  --hill-back: #596381; --hill-front: #3f4e6c; --sun: #efc0b2;
+  --pet-cool-rim: #b5a1dc44; --pet-warm-rim: #e8b0bd20; --bed-halo-opacity: .45;
+  --day-opacity: .12; --night-opacity: .65; --moon-opacity: 0; --firefly-opacity: 0;
+  --sun-rays-opacity: 0;
+}
+:root[data-appearance='dynamic'][data-phase='night'], .theme-environment[data-appearance='dynamic'][data-phase='night'] { --sun-rays-opacity: 0; }
+.appearance-option.dynamic-option { grid-column: 1 / -1; flex-direction: row; min-height: 62px; font-size: 12px; gap: 12px; }
+.dynamic-panel { background: var(--surface-soft); border: 1px solid var(--line); border-radius: 18px; padding: 17px; margin-top: 10px; }
+.dynamic-heading { display: flex; gap: 10px; align-items: center; }
+.dynamic-heading .icon { width: 23px; height: 23px; color: var(--warm-accent); }
+.dynamic-heading strong { display: block; font-size: 12px; line-height: 1.6; }
+.dynamic-heading span { display: block; font-size: 10px; color: var(--sage-ink); line-height: 1.6; margin-top: 3px; }
+.dynamic-panel p { font-size: 11px; line-height: 1.8; color: var(--muted); margin-top: 12px; }
+.dynamic-panel .location-explanation { font-size: 10px; }
+.location-button { width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--selected-line); border-radius: 13px; color: var(--selected-ink); background: var(--selected-surface); font-size: 11px; font-weight: 700; padding: 10px; margin-top: 15px; }
+.location-button .icon { width: 18px; height: 18px; }
+.dynamic-panel > .text-button { width: 100%; font-size: 10px; }
+.solar-details { margin-top: 17px; border-top: 1px solid var(--line); padding-top: 12px; }
+.solar-details summary { font-size: 12px; cursor: pointer; min-height: 36px; padding-top: 8px; }
+.solar-details dl { margin: 5px 0 15px; }
+.solar-details dl > div { display: flex; justify-content: space-between; gap: 12px; font-size: 10px; padding: 9px 0; border-bottom: 1px solid var(--line-soft); }
+.solar-details dt { color: var(--muted); flex: 1; }
+.solar-details dd { margin: 0; text-align: right; overflow-wrap: anywhere; max-width: 58%; }
+.solar-details small { font-size: 9px; color: var(--subtle); line-height: 1.8; }
+
+.theme-environment { color: var(--ink); background-color: var(--outer); min-height: 100svh; }
+.cozy-room { background-color: var(--wall-bottom); }
+.star-scenery { transition: opacity var(--theme-duration) ease; }

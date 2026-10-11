@@ -1,0 +1,47 @@
+.adoption-center { margin-top: 20px; }
+.adoption-species.companion-options { display:flex; gap:8px; margin:0 0 10px; }
+.adoption-species .companion-card { flex:1; min-height:44px; padding:10px; border-radius:18px; font-size:14px; }
+.adoption-stage .cozy-room, .wardrobe-stage .cozy-room { height:245px; aspect-ratio:auto; border-radius:24px; }
+.adoption-stage .room-art, .wardrobe-stage .room-art { height:100%; width:100%; }
+.adoption-preview { position:absolute; inset:22% 0 10px; display:flex; align-items:center; justify-content:center; pointer-events:none; animation:page-enter 250ms ease-out; }
+.adoption-preview .pet-character { width:190px; max-height:100%; }
+.adoption-breed-heading { text-align:center; margin:12px 0; }
+.adoption-breed-heading strong { font:700 22px 'Gaegu', sans-serif; }
+.adoption-breed-heading p { color:var(--muted); font-size:11px; margin-top:5px; }
+.breed-options { display:flex; gap:8px; overflow-x:auto; overscroll-behavior-x:contain; padding:3px 3px 10px; scroll-snap-type:x proximity; }
+.breed-options button { flex-shrink:0; min-height:44px; padding:10px 14px; border:1px solid var(--line); background:var(--surface); border-radius:16px; font-size:11px; scroll-snap-align:center; }
+.breed-options button[aria-pressed=true], .fur-options button[aria-pressed=true], .personality-options button[aria-pressed=true], .accessory-options button[aria-pressed=true] { border-color:var(--sage-ink); background:var(--selected-surface); color:var(--selected-ink); box-shadow:0 0 0 1px var(--sage-ink); }
+.fur-options { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; padding:10px 1px; }
+.fur-options button { display:flex; align-items:center; gap:6px; border:1px solid var(--line); border-radius:16px; min-width:44px; min-height:44px; padding:8px 10px; background:var(--surface); }
+.fur-options button span { height:20px; width:20px; border:1px solid var(--line); border-radius:50%; flex-shrink:0; }
+.fur-options small { font-size:10px; }
+.personality-options { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:18px; }
+.personality-options button { min-height:44px; padding:10px 12px; background:var(--surface); border:1px solid var(--line); border-radius:16px; font-size:11px; }
+.personality-options p { width:100%; font-size:11px; color:var(--muted); }
+.wardrobe-trigger { color:var(--sage-ink); }
+.wardrobe-dialog { position:fixed; inset:0; margin:auto; width:min(calc(100% - 24px),480px); max-width:480px; height:auto; max-height:calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); padding:0; border:1px solid var(--wood); border-radius:28px; color:var(--ink); background:var(--wall-top); box-shadow:0 12px 40px var(--shadow-soft); }
+.wardrobe-dialog[open] { display:flex; flex-direction:column; }
+.wardrobe-dialog::backdrop { background:var(--shadow-soft); }
+.wardrobe-heading { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 16px; flex-shrink:0; }
+.wardrobe-heading h2 { font:700 22px/1.2 'Gaegu', sans-serif; overflow-wrap:anywhere; }
+.wardrobe-heading .eyebrow { font-size:8px; }
+.wardrobe-heading .round-button { flex-shrink:0; background:var(--bubble-surface); }
+.wardrobe-scroll { overflow-y:auto; min-height:0; padding:0 14px 8px; overscroll-behavior:contain; }
+.wardrobe-stage .cozy-room { height:185px; }
+.wardrobe-stage .adoption-preview .pet-character { width:150px; }
+.wardrobe-identity { text-align:center; font-size:11px; margin-top:10px; }
+.wardrobe-date { text-align:center; font-size:9px; color:var(--muted); margin-top:4px; }
+.wardrobe-scroll h3 { font:700 19px 'Gaegu', sans-serif; margin:8px 0; }
+.accessory-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.accessory-options button { text-align:left; min-height:52px; padding:9px 10px; border:1px solid var(--line); border-radius:15px; background:var(--surface); font-size:11px; }
+.accessory-options button span { display:block; font-size:9px; color:var(--muted); margin-top:4px; }
+.accessory-options button:disabled { opacity:.65; cursor:not-allowed; }
+.wardrobe-progress { color:var(--muted); font-size:10px; line-height:1.6; margin-top:12px; }
+.wardrobe-footer { flex-shrink:0; padding:10px 14px; border-top:1px solid var(--line-soft); background:var(--wall-top); }
+.wardrobe-footer .primary-button { margin:0; min-height:46px; }
+.wardrobe-footer p { font-size:9px; color:var(--muted); text-align:center; margin-top:6px; }
+.pet-character.mood-idle .pet-head { animation-duration:var(--pet-idle-duration); }
+.pet-character.mood-idle .pet-eyes { animation-duration:var(--pet-blink-duration); }
+.adventure-personality { margin-top:12px; color:var(--sage-ink); font:400 14px/1.6 'Gaegu', sans-serif; }
+@media (max-height:650px) { .adoption-stage .cozy-room { height:205px; } .wardrobe-stage .cozy-room { height:145px; } .wardrobe-stage .adoption-preview .pet-character { width:120px; } }
+@media (prefers-reduced-motion:reduce) { .adoption-preview { animation:none; } }

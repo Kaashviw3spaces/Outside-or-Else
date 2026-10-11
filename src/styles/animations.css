@@ -1,0 +1,52 @@
+.pet-character { display: inline-block; overflow: visible; max-width: 100%; }
+.pet-small { width: 100px; }
+.pet-medium { width: 200px; }
+.pet-large { width: 300px; }
+.pet-body { transform-origin: 150px 255px; animation: breathe 3.8s ease-in-out infinite; }
+.pet-head { transform-origin: 150px 195px; animation: head-idle 4s ease-in-out infinite; }
+.pet-tail { transform-origin: 209px 233px; animation: tail-sway 3.5s ease-in-out infinite; }
+.pet-ear { transform-box: fill-box; transform-origin: 50% 100%; }
+.left-ear { animation: ear-twitch 9s ease-in-out infinite; }
+.right-ear { animation: ear-twitch 11s 2s ease-in-out infinite; }
+.pet-eyes { transform-origin: 150px 140px; animation: blink 5.5s infinite; }
+.mood-happy .pet-head, .affection-warm.mood-idle .pet-head { animation: happy-nod 1.8s ease-in-out infinite; }
+.mood-happy .pet-tail { animation: tail-wag .55s ease-in-out infinite; }
+.mood-excited .pet-head, .mood-excited .pet-body { animation: excited-bounce .6s ease-in-out infinite; }
+.mood-excited .pet-tail { animation: tail-wag .22s ease-in-out infinite; }
+.mood-excited .pet-ear { transform: rotate(-4deg); }
+.mood-happy .pet-eyes, .mood-sleepy .pet-eyes { animation: none; }
+.mood-annoyed .pet-paw { transform-origin: 110px 250px; animation: paw-tap 1.4s ease-in-out infinite; }
+.mood-annoyed .pet-head { animation: grumpy-tilt 5s infinite; }
+.mood-sad .pet-head { transform: rotate(-4deg) translateY(5px); animation: none; }
+.mood-sleepy .pet-body { animation: breathe 5s ease-in-out infinite; }
+.mood-sleepy .pet-head { animation: sleepy-nod 5s ease-in-out infinite; }
+.mood-sleepy .pet-tail { animation: none; }
+.sleep-z { animation: drift-up 3s ease-in-out infinite; }
+.reaction-petting .pet-head { animation: lean-in 1.8s ease-in-out infinite; }
+.reaction-petting .pet-eyes { animation: none; }
+.floating-heart { animation: heart-float 1.6s ease-out infinite; }
+.reaction-feeding .pet-head { animation: nibble .5s ease-in-out infinite; }
+.reaction-feeding .pet-mouth { transform-origin: 150px 166px; animation: chew .35s infinite; }
+.food-bowl { animation: bowl-arrive .3s ease-out both; }
+@keyframes breathe { 50% { transform: scale(1.025, 1.035); } }
+@keyframes head-idle { 50% { transform: translateY(-2px) rotate(1deg); } }
+@keyframes tail-sway { 50% { transform: rotate(-7deg); } }
+@keyframes tail-wag { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(12deg); } }
+@keyframes blink { 0%, 41%, 45%, 100% { transform: scaleY(1); } 43% { transform: scaleY(.06); } }
+@keyframes ear-twitch { 0%, 82%, 89%, 100% { transform: rotate(0); } 85% { transform: rotate(-8deg); } 87% { transform: rotate(4deg); } }
+@keyframes happy-nod { 50% { transform: translateY(-4px) rotate(-2deg); } }
+@keyframes excited-bounce { 50% { transform: translateY(-9px); } }
+@keyframes paw-tap { 30%, 60% { transform: translateY(-3px); } 45% { transform: translateY(0); } }
+@keyframes grumpy-tilt { 50% { transform: rotate(-3deg); } }
+@keyframes sleepy-nod { 50% { transform: translateY(3px) rotate(2deg); } }
+@keyframes lean-in { 50% { transform: rotate(-7deg) translate(-3px, -2px); } }
+@keyframes heart-float { 0% { opacity: 0; transform: translateY(12px); } 25% { opacity: 1; } 100% { opacity: 0; transform: translateY(-22px); } }
+@keyframes drift-up { 0% { opacity: 0; transform: translateY(5px); } 35% { opacity: .8; } 100% { opacity: 0; transform: translateY(-20px); } }
+@keyframes nibble { 50% { transform: translateY(7px) rotate(2deg); } }
+@keyframes chew { 50% { transform: scaleY(.6); } }
+@keyframes bowl-arrive { from { opacity: 0; transform: translateY(10px); } }
+@keyframes cat-peek { 0% { transform: translateY(230px); } 30% { transform: translateY(125px); } 60%, 100% { transform: translateY(0); } }
+@keyframes look-around { 0%, 45%, 100% { transform: rotate(0); } 60% { transform: rotate(-6deg); } 80% { transform: rotate(6deg); } }
+@keyframes title-reveal { 0%, 55% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes page-enter { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } .splash-copy, .splash-peek { opacity: 1; transform: none; } .floating-heart { opacity: 1; } }

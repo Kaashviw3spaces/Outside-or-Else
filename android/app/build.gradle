@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+
+android {
+    buildToolsVersion '36.0.0'
+    ndkVersion "30.0.16248370"
+    externalNativeBuild { cmake { path "src/main/cpp/CMakeLists.txt"; version "4.1.2" } }
+    sourceSets { main { assets.srcDirs += ['../../native/models', '../../native/notices'] } }
+    androidResources { noCompress += ['gguf'] }
+    namespace = "com.outsideorelse.game"
+    compileSdk = rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.outsideorelse.game"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        ndk { abiFilters 'arm64-v8a' }
+        externalNativeBuild { cmake { arguments '-DANDROID_STL=c++_shared' } }
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    buildTypes {
+        offlineVerify {
+            initWith debug
+            applicationIdSuffix '.offlineverify'
+            matchingFallbacks = ['debug']
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    testBuildType project.hasProperty('offlineVerification') ? 'offlineVerify' : 'debug'
+}
+
+tasks.register('verifyBundledBrain') {
+    doLast {
+        def model = file('../../native/models/Qwen_Qwen3-0.6B-Q4_K_M.gguf')
+        if (!model.exists() || model.length() != 484220320L) throw new GradleException('Complete pinned bundled GGUF is required. Run scripts/prepare-android.ps1.')
+        def digest = java.security.MessageDigest.getInstance('SHA-256')
+        model.withInputStream { stream -> byte[] buffer = new byte[1048576]; int size; while ((size = stream.read(buffer)) != -1) digest.update(buffer, 0, size) }
+        if (digest.digest().encodeHex().toString() != '9acfc1e001311f34b4252001b626f2e466d592a42065f66571bff3790d4e1b14') throw new GradleException('Bundled GGUF hash mismatch')
+    }
+}
+tasks.named('preBuild').configure { dependsOn 'verifyBundledBrain' }
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}

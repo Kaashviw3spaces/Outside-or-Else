@@ -1,0 +1,137 @@
+﻿/* Scene presentation only: artwork, theme resolution and progression remain shared. */
+.game-shell { --dock-height: 64px; --room-rise: 0px; }
+.game-shell .game-header { min-height: calc(52px + env(safe-area-inset-top)); padding-block: calc(10px + env(safe-area-inset-top)) 10px; border: 0; }
+.game-shell .game-header .header-detail { display: none; }
+.game-shell .bottom-nav { bottom: calc(12px + env(safe-area-inset-bottom)); width: min(calc(100% - 24px), 494px); padding: 6px; gap: 4px; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 5px 22px var(--shadow-soft); }
+.game-shell .nav-item { min-height: 50px; padding: 6px 0; gap: 3px; border-radius: 18px; font-size: 9px; }
+.game-shell .nav-item .icon { width: 21px; height: 21px; }
+.game-shell .game-main { animation: scene-arrive 280ms ease-out; }
+.game-shell.scene-home { height: 100dvh; min-height: 0; display: flex; flex-direction: column; }
+.scene-home .game-main { flex: 1; min-height: 0; }
+.scene-home .storage-warning { position: absolute; top: calc(126px + env(safe-area-inset-top)); left: 12px; right: 12px; border-radius: 14px; z-index: 6; padding: 10px; font-size: 10px; }
+.scene-home .bottom-nav { position: absolute; }
+.game-room-scene.home-screen { position: relative; height: 100%; padding: 0; container-type: inline-size; animation: none; }
+.game-room-scene > .cozy-room { position: absolute; inset: 0; isolation: isolate; height: 100%; width: 100%; aspect-ratio: auto; border: 0; border-radius: 0; background: var(--wall-top); }
+.game-room-scene > .cozy-room > .room-art { width: 100%; height: 100%; aspect-ratio: auto; inset: 0; transform: none; }
+.game-room-scene .pet-touch { top: calc(var(--room-floor-y) - var(--pet-scene-size) * .657552); width: var(--pet-scene-size); z-index: 2; transition: top 280ms ease, width 280ms ease; }
+.game-room-scene .speech-bubble { top: calc(var(--room-floor-y) - var(--pet-scene-size) * .657552 - 44px); right: 5%; max-width: 57%; font-size: 11px; padding: 10px 12px; }
+.room-hud { position: absolute; top: calc(16px + env(safe-area-inset-top)); left: max(16px, env(safe-area-inset-left)); right: max(16px, env(safe-area-inset-right)); display: flex; justify-content: space-between; gap: 12px; pointer-events: none; z-index: 3; }
+.room-hud > div { pointer-events: auto; }
+.pet-hud { min-width: 0; max-width: 58%; }
+.pet-hud .pet-name { font:700 clamp(30px, 8vw, 36px)/1.15 'Gaegu', sans-serif; letter-spacing: -.7px; margin-bottom: 8px; overflow-wrap: anywhere; }
+.pet-hud .mood-tag { font-size: 10px; line-height: 1.6; }
+.outing-chip { display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 0; background: none; border: 0; color: var(--muted); font-size: 10px; }
+.outing-chip .icon { width: 15px; height: 15px; }
+.bond-hud { width: 112px; flex-shrink: 0; }
+.bond-hud .love-meter { padding: 10px; border: 1px solid var(--line-soft); border-radius: 16px; background: var(--bubble-surface); }
+.bond-hud .love-label { gap: 6px; font-size: 9px; }
+.bond-hud .love-label span { gap: 4px; }
+.bond-hud .love-label .icon { width: 12px; height: 12px; }
+.bond-hud .love-label strong { font-size: 10px; }
+.bond-hud .love-track { height: 5px; margin-top: 7px; }
+.environment-controls { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 8px; }
+.environment-icon { color: var(--gold-ink); display: grid; place-items: center; }
+.environment-icon .icon { width: 22px; height: 22px; }
+.game-room-scene .pet-talk-orb { position: absolute; top: calc(var(--room-floor-y) - var(--pet-scene-size) * .32); right: 9%; z-index: 3; color: var(--sage-ink); background: var(--bubble-surface); box-shadow: 0 3px 12px var(--shadow-soft); }
+.room-actions { position: absolute; bottom: calc(104px + env(safe-area-inset-bottom)); left: max(18px, env(safe-area-inset-left)); right: max(18px, env(safe-area-inset-right)); display: flex; justify-content: center; gap: clamp(10px, 4vw, 22px); }
+.game-action { width: 64px; min-height: 66px; border-radius: 24px; border: 1px solid var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; color: var(--ink); font-size: 10px; box-shadow: 0 4px 0 var(--shadow-soft); transition: transform 150ms ease; }
+.game-action:active { transform: scale(.94); }
+.game-action .icon { width: 25px; height: 25px; }
+.talk-action { background: var(--sage-surface); }
+.game-shell .page-content { padding-top: 16px; }
+.game-shell .page-content > h1 { font-size: clamp(32px, 8vw, 36px); line-height: 1.2; }
+.game-shell .intro-copy { font-size: 12px; margin-top: 10px; }
+.scene-adventure { background: var(--landscape-sky); }
+.scene-adventure .game-header { background: var(--sky-top); }
+.game-shell .adventure-screen { background: linear-gradient(var(--sky-top), var(--canvas) 520px); }
+.game-shell .landscape-card { border-radius: 0; border: 0; margin: 22px calc(-1 * var(--page-gutter)) 0; background: transparent; }
+.game-shell .landscape-card > svg { min-height: 200px; }
+.game-shell .outing-details > div { border: 0; background: var(--bubble-surface); padding: 12px; border-radius: 16px; }
+.game-shell .nearby-card { position: relative; padding: 15px; border-radius: 18px; box-shadow: 0 3px 0 var(--shadow-soft); }
+.game-shell .nearby-card h3 { font-size: 20px; }
+.game-shell .memories-screen { background: var(--sage-surface); min-height: calc(100dvh - 52px); }
+.game-shell .scrapbook { padding: 24px 18px 28px; background: repeating-linear-gradient(0deg, transparent 0 26px, var(--line-soft) 26px 27px), var(--paper); border-radius: 8px 8px 24px 24px; box-shadow: 5px 5px 0 var(--line), 0 12px 25px var(--shadow-soft); }
+.game-shell .photo-empty { position: relative; border: 7px solid var(--picture-paper); background: var(--photo-surface); }
+.game-shell .photo-empty::before, .game-shell .photo-empty::after { content: ''; position: absolute; width: 20px; height: 20px; border-color: var(--wood); border-style: solid; opacity: .65; }
+.game-shell .photo-empty::before { left: -9px; top: -9px; border-width: 3px 0 0 3px; }
+.game-shell .photo-empty::after { right: -9px; bottom: -9px; border-width: 0 3px 3px 0; }
+.scrapbook-sticker { position: absolute; right: 8px; top: -20px; width: 46px; height: 46px; border-radius: 50%; background: var(--gold-surface); color: var(--sage-ink); display: grid; place-items: center; transform: rotate(16deg); box-shadow: 0 3px 0 var(--shadow-soft); z-index: 1; }
+.game-shell .settings-screen { background: linear-gradient(var(--wall-top), var(--sage-surface)); }
+.game-shell .settings-screen form { margin-top: 20px; border: 1px solid var(--line); border-radius: 28px; padding: 18px; background: var(--canvas); box-shadow: 0 6px 0 var(--shadow-soft); }
+.game-shell .settings-pet { margin-top: 0; }
+.game-shell .settings-screen .appearance-options { gap: 5px; }
+.game-shell .settings-screen .appearance-option { padding-inline: 4px; }
+.game-shell .settings-screen .settings-section h2 { font-size: 22px; }
+@keyframes scene-arrive { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@media (min-width: 768px) {
+  .game-shell.scene-home { height: calc(100dvh - 52px); }
+  .game-shell .bottom-nav { bottom: calc(38px + env(safe-area-inset-bottom)); }
+  .scene-home .bottom-nav { bottom: calc(12px + env(safe-area-inset-bottom)); }
+}
+@media (max-height: 650px) {
+  .game-shell { --room-rise: 32px; }
+  .room-hud { top: calc(12px + env(safe-area-inset-top)); }
+  .pet-hud .pet-name { font-size: 25px; }
+  .game-room-scene .speech-bubble { font-size: 10px; padding: 8px 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .game-shell .game-main { animation: none; } .game-action { transition: none; } }
+/* Conversation lives inside the positioned room; there is no modal or backdrop. */
+.game-room-scene { isolation: isolate; --room-floor-y: 62%; --pet-scene-size: 64cqw; }
+.game-room-scene.is-conversing .speech-bubble { top: max(calc(118px + env(safe-area-inset-top)), calc(var(--room-floor-y) - var(--pet-scene-size) * .657552 - 44px)); }
+.game-room-scene.is-conversing .pet-head { animation: attentive-listen 4s ease-in-out infinite; }
+.game-room-scene.is-conversing .pet-talk-orb { visibility: hidden; }
+.game-room-scene .room-fixture { transition: transform 280ms ease; }
+.game-room-scene:has(.compact-room) .conversation-hud { bottom: calc(8px + env(safe-area-inset-bottom)); }
+.scene-home:has(.compact-room) .bottom-nav { visibility: hidden; }
+.game-room-scene:has(.compact-room) .room-hud { top: calc(8px + env(safe-area-inset-top)); }
+.game-room-scene:has(.compact-room) .outing-chip, .game-room-scene:has(.compact-room) .environment-controls { display: none; }
+.game-room-scene:has(.compact-room) .pet-hud .pet-name { font-size: 22px; margin-bottom: 4px; }
+.game-room-scene:has(.compact-room) .speech-bubble { font-size: 9px; padding: 6px 8px; max-width: 60%; top: max(calc(62px + env(safe-area-inset-top)), calc(var(--room-floor-y) - var(--pet-scene-size) * .657552 - 30px)); }
+@keyframes attentive-listen { 50% { transform: translateY(-2px) rotate(-2deg); } }
+@keyframes conversation-arrive { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .game-room-scene .pet-touch, .game-room-scene .room-fixture { transition: none; } .game-room-scene.is-conversing .pet-head, .game-room-scene .conversation-hud { animation: none; } }
+/* Talk-only storybook paper. The room, pet artwork and non-Talk scenes stay intact. */
+.game-room-scene .conversation-hud { position: absolute; left: max(14px, env(safe-area-inset-left)); right: max(14px, env(safe-area-inset-right)); bottom: calc(92px + env(safe-area-inset-bottom)); z-index: 5; display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; max-height: min(340px, 43dvh); border: 1px solid var(--line-soft); border-radius: 24px; background: var(--bubble-surface); color: var(--ink); box-shadow: 0 8px 24px var(--shadow-soft); animation: conversation-arrive 220ms ease-out; }
+.game-room-scene .conversation-hud[hidden] { display: none; }
+.game-room-scene .conversation-heading { display: flex; align-items: center; gap: 6px; flex-shrink: 0; min-height: 44px; }
+.game-room-scene .conversation-heading h2 { flex: 1; min-width: 0; margin: 0; font:700 20px/1.2 'Gaegu', sans-serif; overflow-wrap: anywhere; }
+.game-room-scene .conversation-heading select { width: 112px; min-width: 0; min-height: 44px; padding: 5px 6px; font-size: 12px; border-radius: 16px; background: var(--selected-surface); color: var(--selected-ink); }
+.game-room-scene .conversation-heading .round-button, .game-room-scene .conversation-compose .round-button { width: 44px; height: 44px; flex-shrink: 0; }
+.game-room-scene .conversation-scroll { flex: 1 1 auto; min-height: 0; max-height: 210px; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; scrollbar-width: thin; padding: 2px 3px 6px; }
+.game-room-scene .conversation-history { display: flex; flex-direction: column; align-items: flex-end; gap: 9px; overflow: visible; }
+.game-room-scene .conversation-history:empty { display: none; }
+.game-room-scene .pet-chat-bubble, .game-room-scene .user-speech-bubble { position: relative; flex-shrink: 0; max-width: 92%; padding: 10px 13px; border-radius: 18px; color: var(--ink); font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; white-space: pre-wrap; animation: conversation-arrive 180ms ease-out; }
+.game-room-scene .pet-chat-bubble { align-self: flex-start; margin-left: 5px; border: 1px solid var(--line-soft); background: var(--paper); border-bottom-left-radius: 6px; }
+.game-room-scene .pet-chat-bubble::before { content: ''; position: absolute; left: -5px; bottom: 9px; width: 9px; height: 9px; transform: rotate(45deg); background: inherit; border-left: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+.game-room-scene .user-speech-bubble { background: color-mix(in srgb, var(--peach) 25%, var(--paper)); color: var(--ink); border-bottom-right-radius: 6px; }
+.game-room-scene .pet-chat-bubble p, .game-room-scene .user-speech-bubble p { margin: 0; }
+.game-room-scene .chat-source { display: block; font-size: 10px; line-height: 1.4; margin-bottom: 4px; color: var(--muted); }
+.game-room-scene .conversation-hint, .game-room-scene .conversation-notice { font-size: 12px; line-height: 1.45; margin: 0 0 8px; overflow-wrap: anywhere; }
+.game-room-scene .brain-status, .game-room-scene .brain-consent, .game-room-scene .brain-progress { padding: 11px 12px; margin-bottom: 8px; border-radius: 18px; background: var(--selected-surface); color: var(--selected-ink); font-size: 12px; line-height: 1.5; }
+.game-room-scene .brain-status p, .game-room-scene .brain-consent p, .game-room-scene .brain-progress p { margin: 5px 0 8px; overflow-wrap: anywhere; }
+.game-room-scene .brain-status strong, .game-room-scene .brain-progress strong { font-family: 'Gaegu', sans-serif; font-size: 14px; font-weight: 400; }
+.game-room-scene .conversation-scroll button, .game-room-scene .brain-consent select { min-height: 44px; padding: 8px 12px; border: 1px solid var(--line-soft); border-radius: 14px; font-size: 12px; background: var(--bubble-surface); color: var(--ink); }
+.game-room-scene .brain-consent select { display: block; width: 100%; margin: 6px 0; }
+.game-room-scene .brain-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.game-room-scene .brain-progress progress { width: 100%; height: 8px; accent-color: var(--accent); }
+.game-room-scene .brain-file { font-size: 11px; }
+.game-room-scene .brain-about, .game-room-scene .brain-diagnostics { font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.game-room-scene .conversation-scroll summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--muted); }
+.game-room-scene .brain-diagnostics pre { font-size: 10px; white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; }
+.game-room-scene .conversation-compose { display: flex; align-items: center; gap: 8px; margin: 0; flex-shrink: 0; }
+.game-room-scene .conversation-compose input { flex: 1; min-width: 0; min-height: 44px; height: 44px; border: 1px solid var(--line-soft); border-radius: 24px; padding: 10px 14px; background: var(--paper); color: var(--ink); font-size: 16px; }
+.game-room-scene .conversation-compose .round-button { color: var(--accent-ink); background: var(--accent); }
+.game-room-scene .pet-thinking { display: flex; align-items: center; gap: 5px; padding: 10px 5px; color: var(--muted); }
+.game-room-scene .pet-thinking span { width: 5px; height: 5px; border-radius: 50%; background: currentColor; animation: tiny-thought 1s ease-in-out infinite; }
+.game-room-scene .pet-thinking span:nth-child(2) { animation-delay: 150ms; }
+.game-room-scene .pet-thinking span:nth-child(3) { animation-delay: 300ms; }
+.game-room-scene .pet-thinking small { margin-left: 5px; }
+.game-room-scene:has(.compact-room) .conversation-hud { bottom: calc(8px + env(safe-area-inset-bottom)); max-height: 150px; padding: 6px 10px; gap: 4px; }
+.game-room-scene:has(.compact-room) .conversation-hint { display: none; }
+@keyframes tiny-thought { 50% { transform: translateY(-3px); opacity: .4; } }
+@media (prefers-reduced-motion: reduce) { .game-room-scene .conversation-hud, .game-room-scene .pet-chat-bubble, .game-room-scene .user-speech-bubble, .game-room-scene .pet-thinking span { animation: none; } }
+.game-room-scene .speech-bubble[data-source-label]::before { content: attr(data-source-label); position: absolute; bottom: 100%; right: 0; white-space: nowrap; font-size: 9px; font-weight: 700; line-height: 1.3; margin-bottom: 2px; color: var(--ink); background: var(--paper); border-radius: 5px; padding: 1px 3px; }
+/* In short landscape windows, keep dialogue inside the room below its controls. */
+@media (max-height: 450px) {
+  .game-room-scene .speech-bubble { top: max(118px, calc(var(--room-floor-y) - var(--pet-scene-size) * .657552 - 44px)); }
+}

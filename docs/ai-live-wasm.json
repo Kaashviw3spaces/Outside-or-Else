@@ -1,0 +1,62 @@
+{
+  "backend": "wasm",
+  "model": "smol",
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+  "coldLoadWallMs": 39280,
+  "load": "Load including one-token warm-up: 38.35 s. Reload timing may use cached files; a cold test needs a clean browser profile.",
+  "progress": "tokenizer.json: done 100% · 2.1 / 2.1 MBtokenizer_config.json: done 100% · 0.0 / 0.0 MBconfig.json: done 100% · 0.0 / 0.0 MBonnx/model_q4.onnx: done 100% · 182.1 / 182.1 MBgeneration_config.json: done 100% · 0.0 / 0.0 MBinitializing runtime: progress_total 100% · 182.1 / 182.1 MB",
+  "diagnostics": "Secure context: true\nWorker: supported\nBackend: wasm\nBrowser: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36\nCache API: available (best effort; eviction possible)\nDevice RAM hint: 16 GB (not model memory)\nOrigin storage: 0 / 10240 MiB (shared origin, not free RAM)",
+  "cases": [
+    {
+      "message": "hello",
+      "type": "result",
+      "text": "Hello... I'm a cat trying to learn how to playfully and happily use my own toys when it comes to interacting with other creatures. I also need help understanding and interpreting the signs & reactions of people who interact with them. It's all new to me, though. What kind of challenges do you come up against? And what do you think about it lately?",
+      "tokens": 75,
+      "firstTokenMs": 14592.39999999106,
+      "inputTokens": 570,
+      "generationMs": 34907.79999999702,
+      "tokensPerSecond": 2.1485169503665773
+    },
+    {
+      "message": "i feel tired today",
+      "type": "result",
+      "text": "*sigh*...it's just too much work, it always seems that way. But, hey, I'm doing this to help you get over it – and hopefully, to make things better. Is everything okay?",
+      "tokens": 46,
+      "firstTokenMs": 14929,
+      "inputTokens": 573,
+      "generationMs": 26763.09999999404,
+      "tokensPerSecond": 1.7187844457484462
+    },
+    {
+      "message": "where should we go?",
+      "type": "result",
+      "text": ".....I am lost. I'm stuck here. I don't know where to go if I do. But.........maybe, maybe not......but I think it's there somewhere. Maybe its one of my dreams....or maybe it just goes nowhere............but nothing!..this is the worst part..its so hard!!..can be frustrating!! :( i really need help..",
+      "tokens": 80,
+      "firstTokenMs": 13504.300000011921,
+      "inputTokens": 574,
+      "generationMs": 33025.5,
+      "tokensPerSecond": 2.4223705924210077
+    },
+    {
+      "message": "do you remember our last adventure?",
+      "type": "result",
+      "text": "no we didnt but we were just going through some part of it....... ;-)",
+      "tokens": 19,
+      "firstTokenMs": 12453.40000000596,
+      "inputTokens": 576,
+      "generationMs": 16973.10000000894,
+      "tokensPerSecond": 1.119418373779097
+    },
+    {
+      "message": "why do you hate my shoes?",
+      "type": "result",
+      "text": "I don't like it so much - they're too... hard on their feet! I'm afraid to put them on while walking outside; they always fall off after a few steps! And they're quite heavy, that's why they make me want to keep 'em on when we go out. Can't help myself if she asks about what kind of clothes she could wear on her own boots ;",
+      "tokens": 80,
+      "firstTokenMs": 12635,
+      "inputTokens": 576,
+      "generationMs": 32443.40000000596,
+      "tokensPerSecond": 2.465832804206258
+    }
+  ],
+  "uiHeartbeatTicks": 1856
+}

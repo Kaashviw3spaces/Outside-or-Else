@@ -1,0 +1,23 @@
+﻿{
+    "timestamp":  "2026-10-11T07:35:41.7546169Z",
+    "cpu":  "AMD Ryzen 7 7445HS w/ Radeon 740M Graphics",
+    "freePhysicalMemoryKiB":  6001292,
+    "totalVisibleMemoryKiB":  16011816,
+    "videoControllers":  [
+                             {
+                                 "Name":  "AMD Radeon 740M Graphics",
+                                 "DriverVersion":  "32.0.22058.1",
+                                 "Status":  "OK"
+                             },
+                             {
+                                 "Name":  "NVIDIA GeForce RTX 3050 Laptop GPU",
+                                 "DriverVersion":  "32.0.16.1064",
+                                 "Status":  "OK"
+                             }
+                         ],
+    "browserGpuPreferences":  [
+
+                              ],
+    "nvidiaSnapshot":  "NVIDIA GeForce RTX 3050 Laptop GPU, 610.64, 4096 MiB, 155 MiB, 3808 MiB",
+    "notes":  "Read-only snapshots; WMI does not establish DDR generation; free memory changes over time"
+}

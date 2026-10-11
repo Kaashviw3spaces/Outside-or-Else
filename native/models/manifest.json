@@ -1,0 +1,12 @@
+{
+  "repository": "bartowski/Qwen_Qwen3-0.6B-GGUF",
+  "revision": "60b85c0e3d8fe0f6474f406922a26d12aca4550d",
+  "file": "Qwen_Qwen3-0.6B-Q4_K_M.gguf",
+  "bytes": 484220320,
+  "sha256": "9acfc1e001311f34b4252001b626f2e466d592a42065f66571bff3790d4e1b14",
+  "upstream": "Qwen/Qwen3-0.6B",
+  "license": "Apache-2.0",
+  "runtime": "ggml-org/llama.cpp",
+  "runtimeRevision": "23b0202a189c44a54625aadcb37a946dd1d6278d",
+  "runtimeLicense": "MIT"
+}

@@ -1,0 +1,325 @@
+{
+  "checkedAt": "2026-10-11T09:45:55.847Z",
+  "scope": "Small public metadata/configuration only; no weights, graphs or native libraries downloaded",
+  "endpoints": {
+    "model": {
+      "url": "https://huggingface.co/api/models/bartowski/Qwen_Qwen3-0.6B-GGUF?blobs=true",
+      "revision": "60b85c0e3d8fe0f6474f406922a26d12aca4550d",
+      "modelId": "bartowski/Qwen_Qwen3-0.6B-GGUF",
+      "file": {
+        "rfilename": "Qwen_Qwen3-0.6B-Q4_K_M.gguf",
+        "blobId": "4c42fc7355a3c2df336e365cfdb3462ca41e34ca",
+        "size": 484220320,
+        "lfs": {
+          "sha256": "9acfc1e001311f34b4252001b626f2e466d592a42065f66571bff3790d4e1b14",
+          "size": 484220320,
+          "pointerSize": 134
+        }
+      }
+    },
+    "config": {
+      "url": "https://huggingface.co/Qwen/Qwen3-0.6B/resolve/main/config.json",
+      "config": {
+        "architectures": [
+          "Qwen3ForCausalLM"
+        ],
+        "attention_bias": false,
+        "attention_dropout": 0,
+        "bos_token_id": 151643,
+        "eos_token_id": 151645,
+        "head_dim": 128,
+        "hidden_act": "silu",
+        "hidden_size": 1024,
+        "initializer_range": 0.02,
+        "intermediate_size": 3072,
+        "max_position_embeddings": 40960,
+        "max_window_layers": 28,
+        "model_type": "qwen3",
+        "num_attention_heads": 16,
+        "num_hidden_layers": 28,
+        "num_key_value_heads": 8,
+        "rms_norm_eps": 0.000001,
+        "rope_scaling": null,
+        "rope_theta": 1000000,
+        "sliding_window": null,
+        "tie_word_embeddings": true,
+        "torch_dtype": "bfloat16",
+        "transformers_version": "4.51.0",
+        "use_cache": true,
+        "use_sliding_window": false,
+        "vocab_size": 151936
+      }
+    },
+    "runtime": {
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/commits/master",
+      "commit": "23b0202a189c44a54625aadcb37a946dd1d6278d"
+    },
+    "binding": {
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/contents/examples/llama.android/lib/src/main/java/com/arm/aichat?ref=master",
+      "files": [
+        {
+          "name": "AiChat.kt",
+          "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/master/examples/llama.android/lib/src/main/java/com/arm/aichat/AiChat.kt"
+        },
+        {
+          "name": "InferenceEngine.kt",
+          "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/master/examples/llama.android/lib/src/main/java/com/arm/aichat/InferenceEngine.kt"
+        },
+        {
+          "name": "gguf",
+          "url": null
+        },
+        {
+          "name": "internal",
+          "url": null
+        }
+      ]
+    }
+  },
+  "pinnedSourceChecks": [
+    {
+      "path": "examples/llama.android/lib/build.gradle.kts",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/23b0202a189c44a54625aadcb37a946dd1d6278d/examples/llama.android/lib/build.gradle.kts",
+      "sha256": "233e3cbff51191f5e87cd18e2f5b1ca3d7931020c16466c95e4762388948136f",
+      "matches": [
+        {
+          "line": 8,
+          "text": "compileSdk = 36"
+        },
+        {
+          "line": 10,
+          "text": "ndkVersion = \"29.0.13113456\""
+        },
+        {
+          "line": 13,
+          "text": "minSdk = 33"
+        },
+        {
+          "line": 19,
+          "text": "abiFilters += listOf(\"arm64-v8a\", \"x86_64\")"
+        },
+        {
+          "line": 39,
+          "text": "minCompileSdk = 35"
+        },
+        {
+          "line": 45,
+          "text": "version = \"3.31.6\""
+        }
+      ]
+    },
+    {
+      "path": "examples/llama.android/lib/src/main/java/com/arm/aichat/internal/InferenceEngineImpl.kt",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/23b0202a189c44a54625aadcb37a946dd1d6278d/examples/llama.android/lib/src/main/java/com/arm/aichat/internal/InferenceEngineImpl.kt",
+      "sha256": "b43eda213de605e39101b46c507a6af5bee8bf5c3fba15ac128f81a85c7e78c0",
+      "matches": [
+        {
+          "line": 6,
+          "text": "import com.arm.aichat.UnsupportedArchitectureException"
+        },
+        {
+          "line": 11,
+          "text": "import kotlinx.coroutines.Dispatchers"
+        },
+        {
+          "line": 32,
+          "text": "* with the underlying C++ native code."
+        },
+        {
+          "line": 36,
+          "text": "* 2. Load a model with [loadModel]"
+        },
+        {
+          "line": 37,
+          "text": "* 3. Send prompts with [sendUserPrompt]"
+        },
+        {
+          "line": 44,
+          "text": "* @see ai_chat.cpp for the native implementation details"
+        },
+        {
+          "line": 59,
+          "text": "* @param Context for obtaining native library directory"
+        },
+        {
+          "line": 60,
+          "text": "* @throws IllegalArgumentException if native library path is invalid"
+        },
+        {
+          "line": 66,
+          "text": "require(nativeLibDir.isNotBlank()) { \"Expected a valid native library path!\" }"
+        },
+        {
+          "line": 72,
+          "text": "Log.e(TAG, \"Failed to load native library from $nativeLibDir\", e)"
+        },
+        {
+          "line": 124,
+          "text": "private val llamaDispatcher = Dispatchers.IO.limitedParallelism(1)"
+        },
+        {
+          "line": 131,
+          "text": "\"Cannot load native library in ${_state.value.javaClass.simpleName}!\""
+        },
+        {
+          "line": 134,
+          "text": "Log.i(TAG, \"Loading native library...\")"
+        },
+        {
+          "line": 135,
+          "text": "System.loadLibrary(\"ai-chat\")"
+        },
+        {
+          "line": 138,
+          "text": "Log.i(TAG, \"Native library loaded! System info: \\n${systemInfo()}\")"
+        },
+        {
+          "line": 141,
+          "text": "Log.e(TAG, \"Failed to load native library\", e)"
+        },
+        {
+          "line": 150,
+          "text": "override suspend fun loadModel(pathToModel: String) ="
+        },
+        {
+          "line": 169,
+          "text": "if (it != 0) throw UnsupportedArchitectureException()"
+        },
+        {
+          "line": 217,
+          "text": "override fun sendUserPrompt("
+        }
+      ]
+    },
+    {
+      "path": "examples/llama.android/lib/src/main/cpp/ai_chat.cpp",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/23b0202a189c44a54625aadcb37a946dd1d6278d/examples/llama.android/lib/src/main/cpp/ai_chat.cpp",
+      "sha256": "fc8f763cb5ff3683ec2ada53270423cbfeb5de407f749c67ff875c07ef531947",
+      "matches": [
+        {
+          "line": 31,
+          "text": "constexpr int   DEFAULT_CONTEXT_SIZE    = 8192;"
+        },
+        {
+          "line": 39,
+          "text": "static common_chat_templates_ptr          g_chat_templates;"
+        },
+        {
+          "line": 67,
+          "text": "auto *model = llama_model_load_from_file(model_path, model_params);"
+        },
+        {
+          "line": 76,
+          "text": "static llama_context *init_context(llama_model *model, const int n_ctx = DEFAULT_CONTEXT_SIZE) {"
+        },
+        {
+          "line": 90,
+          "text": "const int trained_context_size = llama_model_n_ctx_train(model);"
+        },
+        {
+          "line": 91,
+          "text": "if (n_ctx > trained_context_size) {"
+        },
+        {
+          "line": 93,
+          "text": "__func__, trained_context_size, n_ctx);"
+        },
+        {
+          "line": 95,
+          "text": "ctx_params.n_ctx = n_ctx;"
+        },
+        {
+          "line": 120,
+          "text": "g_chat_templates = common_chat_templates_init(g_model, \"\");"
+        },
+        {
+          "line": 159,
+          "text": "const uint32_t n_ctx = llama_n_ctx(context);"
+        },
+        {
+          "line": 160,
+          "text": "LOGi(\"n_ctx = %d\", n_ctx);"
+        },
+        {
+          "line": 294,
+          "text": "g_chat_templates.get(), chat_msgs, new_msg, role == ROLE_USER, /* use_jinja */ false);"
+        },
+        {
+          "line": 330,
+          "text": "if (start_pos + i + cur_batch_size >= DEFAULT_CONTEXT_SIZE - OVERFLOW_HEADROOM) {"
+        },
+        {
+          "line": 370,
+          "text": "const bool has_chat_template = common_chat_templates_was_explicit(g_chat_templates.get());"
+        },
+        {
+          "line": 371,
+          "text": "if (has_chat_template) {"
+        },
+        {
+          "line": 378,
+          "text": "has_chat_template, has_chat_template);"
+        },
+        {
+          "line": 384,
+          "text": "const int max_batch_size = DEFAULT_CONTEXT_SIZE - OVERFLOW_HEADROOM;"
+        },
+        {
+          "line": 419,
+          "text": "const bool has_chat_template = common_chat_templates_was_explicit(g_chat_templates.get());"
+        },
+        {
+          "line": 420,
+          "text": "if (has_chat_template) {"
+        },
+        {
+          "line": 426,
+          "text": "auto user_tokens = common_tokenize(g_context, formatted_user_prompt, has_chat_template, has_chat_template);"
+        },
+        {
+          "line": 433,
+          "text": "const int max_batch_size = DEFAULT_CONTEXT_SIZE - OVERFLOW_HEADROOM;"
+        },
+        {
+          "line": 493,
+          "text": "if (current_position >= DEFAULT_CONTEXT_SIZE - OVERFLOW_HEADROOM) {"
+        },
+        {
+          "line": 555,
+          "text": "g_chat_templates.reset();"
+        }
+      ]
+    },
+    {
+      "path": "src/models/qwen3.cpp",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/23b0202a189c44a54625aadcb37a946dd1d6278d/src/models/qwen3.cpp",
+      "sha256": "06f400665980d30fd357886a5d14b541adda06d159a5b7f0ce929ca36788778c",
+      "matches": [
+        {
+          "line": 3,
+          "text": "void llama_model_qwen3::load_arch_hparams(llama_model_loader & ml) {"
+        },
+        {
+          "line": 15,
+          "text": "void llama_model_qwen3::load_arch_tensors(llama_model_loader &) {"
+        },
+        {
+          "line": 49,
+          "text": "std::unique_ptr<llm_graph_context> llama_model_qwen3::build_arch_graph(const llm_graph_params & params) const {"
+        },
+        {
+          "line": 53,
+          "text": "llama_model_qwen3::graph::graph(const llama_model & model, const llm_graph_params & params) : llm_graph_context(params) {"
+        },
+        {
+          "line": 93,
+          "text": "n_rot, rope_type, n_ctx_orig, freq_base, freq_scale,"
+        },
+        {
+          "line": 102,
+          "text": "n_rot, rope_type, n_ctx_orig, freq_base, freq_scale,"
+        }
+      ]
+    }
+  ]
+}

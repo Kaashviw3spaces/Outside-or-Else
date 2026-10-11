@@ -1,0 +1,168 @@
+// Scene browser regression and screenshots. Run after npm run build; requires installed Chrome.
+// Chrome touch emulation is not a substitute for testing the actual Android phone.
+const assert = require('node:assert/strict')
+const fs = require('node:fs')
+const http = require('node:http')
+const os = require('node:os')
+const path = require('node:path')
+const { spawn } = require('node:child_process')
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+const chrome = process.env.CHROME_PATH || 'C:/Program Files/Google/Chrome/Application/chrome.exe'
+const server = http.createServer((req,res)=>{
+ const url=new URL(req.url,'http://localhost'), root=path.resolve('dist')
+ const file=path.resolve(root,'.'+(url.pathname==='/'?'/index.html':url.pathname))
+ if(!file.startsWith(root+path.sep)||!fs.existsSync(file)){res.statusCode=404;return res.end()}
+ // Apply to worker responses too: CDP page blocking alone may miss worker targets.
+ res.setHeader('Content-Security-Policy',"connect-src 'self'");
+ res.setHeader('Content-Type',file.endsWith('.html')?'text/html':file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':file.endsWith('.wasm')?'application/wasm':'image/svg+xml');res.end(fs.readFileSync(file))
+})
+let browser, socket, browserProfile
+async function main(){
+ assert.equal(process.argv.length,2,'Offline fixture test accepts no live/GPU/benchmark flags')
+ assert.ok(fs.existsSync(chrome),'Set CHROME_PATH to an installed Chrome executable')
+ await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve))
+ const port=server.address().port
+ browserProfile=fs.mkdtempSync(path.join(os.tmpdir(),'outside-scenes-test-'))
+ browser=spawn(chrome,['--headless', ...(process.argv.includes('--gpu') ? [] : ['--disable-gpu']),'--no-first-run','--no-proxy-server','--remote-debugging-port=0','--host-resolver-rules=MAP outside-or-else.test 127.0.0.1','--user-data-dir='+browserProfile,'about:blank'],{windowsHide:true,stdio:'ignore'})
+ const activePort=path.join(browserProfile,'DevToolsActivePort')
+ for(let i=0;!fs.existsSync(activePort)&&i<100;i++)await delay(100)
+ assert.ok(fs.existsSync(activePort),'Chrome debugging connection did not start')
+ const debugPort=fs.readFileSync(activePort,'utf8').split('\n')[0]
+ const targets=await (await fetch('http://127.0.0.1:'+debugPort+'/json/list')).json()
+ socket=new WebSocket(targets.find(target=>target.type==='page').webSocketDebuggerUrl)
+ await new Promise((resolve,reject)=>{socket.addEventListener('open',resolve,{once:true});socket.addEventListener('error',reject,{once:true})})
+ let nextId=0;const pending=new Map()
+ socket.addEventListener('message',event=>{const message=JSON.parse(event.data);if(message.id&&pending.has(message.id)){const {resolve,reject,timer}=pending.get(message.id);pending.delete(message.id);clearTimeout(timer);message.error?reject(new Error(message.error.message)):resolve(message.result)}})
+ const call=(method,params={})=>new Promise((resolve,reject)=>{const id=++nextId;const timer=setTimeout(()=>{pending.delete(id);reject(new Error('CDP timeout: '+method))},10000);pending.set(id,{resolve,reject,timer});socket.send(JSON.stringify({id,method,params}))})
+ const evaluate=async expression=>{const result=await call('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(result.exceptionDetails)throw new Error(result.exceptionDetails.exception?.description??result.exceptionDetails.text);return result.result.value}
+ const waitFor=async expression=>{for(let i=0;i<400;i++){if(await evaluate(expression))return;await delay(50)}throw new Error('Timed out waiting for '+expression)}
+ await call('Page.enable');await call('Runtime.enable')
+
+
+ // Synthetic worker transport only; no real runtime, model or generation.
+ const base={version:1,profile:{id:'talk-fixture',species:'cat',name:'Miso',activities:['Walking'],outingTime:'17:30',duration:10,affection:50,sound:false,notifications:false,pet:{breed:'siamese',furVariation:'cream',personality:'curious',generation:1,relationshipHistory:[],adoptedAt:null}}}
+ await call('Page.addScriptToEvaluateOnNewDocument',{source:`localStorage.setItem('outside-or-else:v1',JSON.stringify(${JSON.stringify(base)}));window.__errors=[];addEventListener('error',e=>__errors.push(e.message));window.__workers=[];window.__messages=[];window.__loadDelay=250;window.__hang=false;window.__reject=false;window.__loadError=false;window.__replaced=false;window.Worker=class{constructor(url){this.url=String(url);this.ended=false;__workers.push(this)}postMessage(m){__messages.push(m);if(m.type==='load'){if(__loadError){setTimeout(()=>this.onmessage?.({data:{type:'error',message:'Synthetic allocation failure'}}),30);return}setTimeout(()=>this.onmessage?.({data:{type:'progress',file:'fixture.onnx',status:'progress',loaded:50,total:100}}),30);setTimeout(()=>this.onmessage?.({data:{type:'ready',loadMs:200}}),__loadDelay)}else{this.onmessage?.({data:{type:'chunk',text:'unchecked draft must stay hidden'}});if(!__hang)setTimeout(()=>{if(!this.ended)this.onmessage?.({data:{type:'result',accepted:!__reject,text:__reject?'bad rejected draft':m.context.species.value==='dog'?'little nose is here. bork.':'little paws are here. mrrp.',generationMs:10,firstTokenMs:1,tokens:8,tokensPerSecond:800,inputTokens:500,configuration:'9b1-balanced'}})},180)}}terminate(){this.ended=true}};Object.defineProperty(navigator,'gpu',{configurable:true,value:{requestAdapter:async()=>({info:{vendor:'synthetic',architecture:'fixture'},features:{has:()=>true}})}});`})
+ const requests=[];socket.addEventListener('message',e=>{const m=JSON.parse(e.data);if(m.method==='Network.requestWillBeSent')requests.push(m.params.request.url)});await call('Network.enable');await call('Network.setBlockedURLs',{urls:['https://*']})
+ const url='http://127.0.0.1:'+port+'/'
+ const set=async(selector,value)=>evaluate(`(()=>{const el=document.querySelector(${JSON.stringify(selector)});Object.getOwnPropertyDescriptor(el instanceof HTMLSelectElement?HTMLSelectElement.prototype:HTMLInputElement.prototype,'value').set.call(el,${JSON.stringify(value)});el.dispatchEvent(new Event(el instanceof HTMLSelectElement?'change':'input',{bubbles:true}))})()`)
+ const click=selector=>evaluate(`document.querySelector(${JSON.stringify(selector)}).click()`)
+ const wake=async()=>{await click('#talk-wake');await waitFor('!!document.querySelector("#talk-confirm")');await click('#talk-confirm')}
+ const send=async text=>{await set('#conversation-input',text);await click('[aria-label="Send message"]')}
+ await call('Page.navigate',{url});await waitFor('!!document.querySelector(".home-screen")')
+ await evaluate('(async()=>{const c=await caches.open("transformers-cache");await c.put(new Request(location.origin+"/completed-file-fixture"),new Response("completed cached file"))})()')
+ const original=await evaluate('localStorage.getItem("outside-or-else:v1")')
+ await click('.talk-action');await waitFor('document.querySelector(".conversation-hud").hidden===false')
+ assert.equal(await evaluate('document.querySelector("#conversation-mode").value'),'offline')
+ await send('hello little friend');await waitFor('!!document.querySelector("[data-response-source=offline]")')
+ assert.equal(await evaluate('__workers.length'),0)
+ assert.equal(await evaluate('document.querySelectorAll("[data-response-source=ai]").length'),0)
+ await send('how many saved adventures?');await waitFor('document.querySelector("[data-response-source=facts]")?.textContent.includes("Completed saved adventures: 0")')
+ await send('what is my affection?');await waitFor('document.querySelector(".conversation-history").textContent.includes("Affection: 50/100")')
+ await send('what are the challenge rules?');await waitFor('document.querySelector(".conversation-history").textContent.includes("Challenge rules")')
+ assert.equal(await evaluate('__workers.length'),0)
+ await set('#conversation-mode','ai');await waitFor('!!document.querySelector("#talk-wake")')
+ assert.equal(await evaluate('__workers.length'),0,'Selecting AI never loads')
+ await click('#talk-wake');await waitFor('!!document.querySelector("#talk-confirm")');assert.ok(await evaluate('document.querySelector("#talk-memory").textContent.includes("GiB")'));assert.equal(await evaluate('__workers.length'),0);await click('.brain-actions button:nth-child(2)')
+ await send('how many saved photos?');await waitFor('document.querySelector(".conversation-history").textContent.includes("saved photo(s)")')
+ assert.equal(await evaluate('__workers.length'),0,'Facts before wake do not load')
+ await evaluate('__loadDelay=2500');await wake();await waitFor('!!document.querySelector(".brain-progress")')
+ await waitFor('document.querySelector(".brain-progress")?.textContent.includes("50%")')
+ await evaluate('__workers[0].onmessage({data:{type:"progress",file:"second-file.json",status:"initiate",loaded:0,total:0}})')
+ await waitFor('document.querySelector(".brain-file").textContent.includes("second-file.json")');assert.equal(await evaluate('document.querySelector(".brain-progress progress").hasAttribute("value")'),false,'Unknown file total is indeterminate')
+ assert.equal(await evaluate('JSON.parse(document.querySelector(".brain-diagnostics pre").textContent).files["fixture.onnx"].loaded'),50,'New file does not reset previous bytes')
+ await evaluate('__workers[0].onmessage({data:{type:"phase",state:"initializing",stage:"Fixture session creation"}})');await waitFor('document.querySelector(".conversation-hud").dataset.brainState==="initializing"')
+ await click('[aria-label="Close conversation"]');assert.equal(await evaluate('__workers[0].ended'),false)
+ await click('.talk-action');await waitFor('!!document.querySelector(".brain-progress")');assert.equal(await evaluate('__workers.length'),1)
+ await click('[aria-label="Close conversation"]');await click('.nav-item:nth-child(4)');await waitFor('!!document.querySelector("#pet-chat-mode")');assert.equal(await evaluate('__workers[0].ended'),false,'Home unmount retains initialization')
+ await evaluate('location.hash="ai-lab"');await waitFor('!!document.querySelector("#ai-load")');assert.equal(await evaluate('__workers.length'),1);assert.equal(await evaluate('document.querySelector("#ai-load").disabled'),true,'Lab shares current loading session')
+ await evaluate('location.hash=""');await waitFor('!!document.querySelector(".home-screen")');await click('.talk-action')
+ await waitFor('!document.querySelector(".brain-progress")&&!document.querySelector("#talk-wake")');await evaluate('__loadDelay=250')
+ assert.equal(await evaluate('__workers.length'),1)
+ assert.equal(await evaluate('__messages[0].model'),'qwen')
+ for(const text of ['hello','what is a laptop?','keep me company']){await send(text);assert.equal(await evaluate('document.querySelector(".conversation-history").textContent.includes("unchecked draft")'),false);await waitFor('!document.querySelector(".chat-cancel")')}
+ const generation=await evaluate('__messages.filter(m=>m.type==="generate")')
+ assert.deepEqual(generation.map(m=>m.messages.length),[2,4,6])
+ assert.equal(generation[0].context.name.value,'Miso');assert.equal(generation[0].context.breed.value,'siamese');assert.equal(generation[0].context.personality.value,'curious');assert.equal(generation[0].context.mood.value,'idle')
+ assert.equal(generation[0].purpose,'talk');assert.ok(!JSON.stringify(generation).includes('latitude'))
+ await send('what rewards have I earned?');await waitFor('document.querySelector(".conversation-history").textContent.includes("Recorded awarded points")')
+ assert.equal(await evaluate('__messages.filter(m=>m.type==="generate").length'),3,'Facts bypass loaded worker')
+ await evaluate('__reject=true');await send('hello');await waitFor('document.querySelector(".conversation-history").textContent.includes("failed checks")')
+ assert.equal(await evaluate('document.querySelectorAll("[data-response-source=ai]").length'),3)
+ assert.equal(await evaluate('document.querySelector(".conversation-history").textContent.includes("bad rejected draft")'),false)
+ await evaluate('__reject=false;__hang=true');await send('hello again');await waitFor('!!document.querySelector(".chat-cancel")')
+ const offlineBeforeFailure=await evaluate('document.querySelectorAll("[data-response-source=offline]").length')
+ const count=await evaluate('__messages.length');await click('[aria-label="Send message"]');assert.equal(await evaluate('__messages.length'),count)
+ await click('.chat-cancel');assert.equal(await evaluate('__workers[0].ended'),true)
+ await evaluate('__hang=false;__loadError=true');await wake();await waitFor('document.querySelector(".brain-diagnostics").textContent.includes("Synthetic allocation failure")')
+ assert.equal(await evaluate('document.querySelectorAll("[data-response-source=ai]").length'),3)
+ assert.equal(await evaluate('document.querySelectorAll("[data-response-source=offline]").length'),offlineBeforeFailure,'Error never silently falls back')
+ await click('.chat-offline');assert.equal(await evaluate('document.querySelector("#conversation-mode").value'),'offline')
+ await send('hi again');await waitFor('document.querySelectorAll("[data-response-source=offline]").length===1')
+ await click('[aria-label="Close conversation"]');await click('.nav-item:nth-child(4)');await waitFor('!!document.querySelector("#pet-chat-mode")')
+ await set('#pet-chat-mode','ai');assert.equal(await evaluate('localStorage.getItem("outside-or-else:pet-chat-mode:v1")'),'ai')
+ const n=await evaluate('__workers.length');await click('.nav-item:nth-child(1)');await waitFor('!!document.querySelector(".home-screen")');await click('.talk-action');await waitFor('!!document.querySelector("#talk-wake")');assert.equal(await evaluate('__workers.length'),n)
+ await evaluate('__loadError=false');await wake();await waitFor('!document.querySelector("#talk-wake")&&!document.querySelector(".brain-progress")')
+ await evaluate('Object.defineProperty(document,"hidden",{configurable:true,value:true});document.dispatchEvent(new Event("visibilitychange"))');await delay(100)
+ assert.equal(await evaluate('__workers.at(-1).ended'),false,'Backgrounding retains session');await click('.brain-about summary');await click('.brain-about button')
+ await evaluate('Object.defineProperty(document,"hidden",{configurable:true,value:false})')
+ await click('[aria-label="Close conversation"]')
+ // Touch dimensions and keyboard-resize simulation in offline, ready and consent states.
+ for(const [width,height] of [[360,800],[390,844],[430,932]]) {
+  await call('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true})
+  await click('.talk-action');await waitFor('document.querySelector(".conversation-hud").hidden===false')
+  await set('#conversation-mode','offline');await send('hello')
+  for(const h of [height,350]) {
+   await call('Emulation.setDeviceMetricsOverride',{width,height:h,deviceScaleFactor:1,mobile:true});await delay(450)
+   const geometry=await evaluate(`(()=>{const r=s=>{const b=document.querySelector(s).getBoundingClientRect();return {top:b.top,bottom:b.bottom,left:b.left,right:b.right,width:b.width,height:b.height}};return {width:innerWidth,scroll:document.documentElement.scrollWidth,pet:r('.pet-touch'),panel:r('.conversation-hud'),input:r('.conversation-compose'),button:r('[aria-label="Send message"]')}})()`)
+   assert.ok(await evaluate('document.documentElement.scrollHeight<=innerHeight'),'No accidental page scrolling')
+   assert.equal(await evaluate('Array.from(document.querySelectorAll(".conversation-hud *")).filter(e=>["auto","scroll"].includes(getComputedStyle(e).overflowY)).length'),1,'Single primary scroll area')
+   assert.equal(await evaluate('getComputedStyle(document.querySelector("#conversation-input")).fontSize'),'16px')
+   assert.ok(geometry.scroll<=width,'No horizontal overflow');assert.ok(geometry.input.bottom<=h,'Input visible');assert.ok(geometry.pet.bottom<geometry.panel.top,'Pet visible clear of panel '+JSON.stringify(geometry));assert.ok(geometry.button.width>=44&&geometry.button.height>=44)
+  }
+  await call('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true});await set('#conversation-mode','ai');await waitFor('!!document.querySelector("#talk-wake")');await wake();await waitFor('!document.querySelector("#talk-wake")&&!document.querySelector(".brain-progress")');await send('hello');await waitFor('!document.querySelector(".chat-cancel")')
+  for(const h of [height,350]) {
+   await call('Emulation.setDeviceMetricsOverride',{width,height:h,deviceScaleFactor:1,mobile:true});await delay(450)
+   assert.ok(await evaluate('document.documentElement.scrollWidth<=innerWidth'))
+   assert.ok(await evaluate('document.querySelector(".pet-touch").getBoundingClientRect().bottom<document.querySelector(".conversation-hud").getBoundingClientRect().top'),'Ready AI panel clears pet')
+   assert.ok(await evaluate('document.querySelector(".conversation-compose").getBoundingClientRect().bottom<=visualViewport.height+visualViewport.offsetTop'),'Ready AI input visible')
+  }
+  await call('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:true});await delay(300)
+  await evaluate('document.querySelector(".brain-about").open=false');await send('hello little friend');await waitFor('!document.querySelector(".chat-cancel")');await delay(200)
+  const shot=await call('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})
+  fs.mkdirSync('artifacts/checkpoint-9c2',{recursive:true});fs.writeFileSync(`artifacts/checkpoint-9c2/talk-synthetic-${width}x${height}.png`,Buffer.from(shot.data,'base64'))
+  await click('[aria-label="Close conversation"]')
+ }
+ // A separate synthetic dog instance must receive dog identity and personality.
+ await evaluate('const p=JSON.parse(localStorage.getItem("outside-or-else:v1"));p.profile.species="dog";p.profile.name="Maple";p.profile.pet.breed="shiba-inu";p.profile.pet.personality="sleepy";localStorage.setItem("outside-or-else:v1",JSON.stringify(p))')
+ const dogSave=await evaluate('localStorage.getItem("outside-or-else:v1")')
+ await click('.nav-item:nth-child(4)');await waitFor('!!document.querySelector("#pet-chat-mode")');await click('.nav-item:nth-child(1)');await waitFor('!!document.querySelector(".home-screen")')
+ // App subscribes to cross-tab save changes; dispatch the event with the new disk value.
+ await evaluate('window.dispatchEvent(new StorageEvent("storage",{key:"outside-or-else:v1",newValue:localStorage.getItem("outside-or-else:v1")}))')
+ await click('.talk-action');await waitFor('document.querySelector(".conversation-hud").hidden===false');await send('hello');await waitFor('!document.querySelector(".chat-cancel")')
+ const dog=await evaluate('__messages.filter(m=>m.type==="generate").at(-1)')
+ assert.equal(dog.context.species.value,'dog');assert.equal(dog.context.breed.value,'shiba-inu');assert.equal(dog.context.personality.value,'sleepy')
+ assert.equal(await evaluate('localStorage.getItem("outside-or-else:v1")'),dogSave)
+ await evaluate('localStorage.setItem("outside-or-else:pet-chat-mode:v1","offline");window.dispatchEvent(new StorageEvent("storage",{key:"outside-or-else:pet-chat-mode:v1",newValue:"offline"}))')
+ await waitFor('document.querySelector("#conversation-mode").value==="offline"');assert.equal(await evaluate('__workers.at(-1).ended'),true,'Cross-tab mode switch unloads')
+ await evaluate('Object.defineProperty(navigator,"gpu",{configurable:true,value:undefined})')
+ await set('#conversation-mode','ai');await waitFor('!!document.querySelector("#talk-wake")');await delay(100)
+ await click('#talk-wake');await waitFor('!!document.querySelector("#talk-confirm")');assert.equal(await evaluate('document.querySelector("#talk-confirm").disabled'),true,'No automatic CPU fallback')
+ await set('#talk-backend','wasm');assert.equal(await evaluate('document.querySelector("#talk-confirm").disabled'),false)
+ await evaluate('window.__timer=window.setTimeout;window.setTimeout=(fn,ms,...args)=>__timer(fn,ms>=180000?40:ms,...args)')
+ await click('#talk-confirm');await waitFor('document.querySelector(".brain-diagnostics").textContent.includes("timed out")')
+ assert.equal(await evaluate('__messages.at(-1).backend'),'wasm','CPU load was explicitly chosen')
+ assert.equal(await evaluate('__workers.at(-1).ended'),true,'Timeout releases worker')
+ // A Lab-first Qwen load while the game preference is offline must be reused.
+ await evaluate('window.setTimeout=window.__timer');await set('#conversation-mode','offline')
+ await evaluate('location.hash="ai-lab"');await waitFor('!!document.querySelector("#ai-load")');await set('#ai-backend','wasm');await click('#ai-load');await waitFor('document.querySelector("[data-ai-status]").dataset.aiStatus==="ready"')
+ const labWorkerCount=await evaluate('__workers.length');await evaluate('location.hash=""');await waitFor('!!document.querySelector(".home-screen")');await click('.talk-action');await set('#conversation-mode','ai');await delay(100)
+ assert.equal(await evaluate('__workers.at(-1).ended'),false,'Enabling AI adopts Lab-first Qwen, never unloads it');assert.equal(await evaluate('__workers.length'),labWorkerCount);assert.equal(await evaluate('document.querySelector("#talk-wake")'),null)
+ await send('hello');await waitFor('!!document.querySelector("[data-response-source=ai]")');await set('#conversation-mode','offline')
+ await evaluate('localStorage.setItem("outside-or-else:v1",'+JSON.stringify(original)+')')
+ assert.equal(await evaluate('localStorage.getItem("outside-or-else:v1")'),original,'Saved companion unchanged')
+ assert.equal(await evaluate('(async()=>{const c=await caches.open("transformers-cache");return (await c.match(location.origin+"/completed-file-fixture")).text()})()'),'completed cached file','Cancel/error/retry/offline never clears completed Cache API files')
+ assert.deepEqual(await evaluate('__errors'),[])
+ assert.equal(requests.some(u=>/huggingface|ort-wasm|inference.worker/.test(u)),false,'No actual runtime/model requests during synthetic fixture tests')
+ console.log('PASS: offline Talk, deterministic facts before/after wake, explicit AI consent, honest synthetic progress, bounded history/context, withheld drafts, rejection/no fallback, duplicate guard/cancel, close/reopen and real Home unmount during fixture loading, shared Lab session, load failure, setting persistence, background retention / explicit unload, unchanged saves and 3 mobile sizes/keyboard simulation. Synthetic transport only; no model loaded.')
+}
+main().catch(e=>{console.error(e);process.exitCode=1}).finally(async()=>{socket?.close();browser?.kill();server.close();await delay(700);if(browserProfile){assert.ok(path.resolve(browserProfile).startsWith(path.resolve(os.tmpdir())+path.sep));assert.ok(path.basename(browserProfile).startsWith('outside-scenes-test-'));fs.rmSync(browserProfile,{recursive:true,force:true,maxRetries:10,retryDelay:200})}})

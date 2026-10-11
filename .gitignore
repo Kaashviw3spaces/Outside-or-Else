@@ -1,0 +1,75 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+.npm-cache/
+native/vendor/
+native/*.zip
+native/models/*.gguf
+native/build-*/
+native/toolchain/
+android/.gradle-cache/
+
+# Android generated files
+android/.gradle/
+android/.gradle-cache/
+android/build/
+android/app/build/
+android/local.properties/
+android/local.properties
+android/captures/
+android/.cxx/
+android/app/.cxx/
+
+# Capacitor generated web assets
+android/app/src/main/assets/public/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+*.pem
+*.key
+keystore.properties
+key.properties
+
+# Native build artifacts
+native/vendor/
+native/*.zip
+native/models/*.gguf
+native/build-*/
+native/toolchain/
+
+# Personal data and local databases
+*.db
+*.sqlite
+*.sqlite3
+
+
+# Local checkpoints and generated QA artifacts
+.checkpoints/
+artifacts/
+

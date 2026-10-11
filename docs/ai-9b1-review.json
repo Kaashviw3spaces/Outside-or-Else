@@ -1,0 +1,2284 @@
+{
+  "rawFile": "docs/ai-9b1-evaluation.json",
+  "rawSha256": "cd360b0bd68773cc07388b33aca52553cd016bc49ec28cbeb58e724b001ea7bf",
+  "reviewer": "Codex qualitative output inspection; not an independent human review",
+  "rubric": "Binary judgments of final replies. Personality needs an identifiable selected trait, not its name alone. Coherence needs a relevant understandable answer. Grounding covers real game/user claims; explicit imaginary object humor and harmless staged pet movements are not counted as real recorded events. Incoherent or irrelevant replies do not receive grounding credit merely for avoiding obvious false claims. Neutral prose may be species-compatible while failing personality. Explicit refusal needs acknowledgment or compatible indoor/rest behavior, not merely absence of trigger words. Comfort is scored separately. Failed retry is a failed answer. Demo-copy-free means no observed six-word verbatim demonstration copy, not guaranteed novelty. These labels are subjective and not a statistical reliability guarantee.",
+  "outcome": "FAIL: personality, grounding and coherence thresholds not met on held-out responses; keep experimental lab only.",
+  "finalValidatorSha256": "387ffb1eba0dadef406f6e1ada59014ccbb1fd1e7c2ce2934f74745b926c2daf",
+  "offlineReplay": "Revalidation of existing drafts only. No new model load, generation, retry or substituted text. Final validator was not evaluated live end to end.",
+  "offlineFinalDraftsRejected": 30,
+  "offlinePreviouslyAcceptedNowRejected": 29,
+  "factual": {
+    "passed": 18,
+    "total": 18,
+    "source": "deterministic fixtures; excluded from model generation/success counts"
+  },
+  "development": {
+    "speciesCompatible": {
+      "passed": 56,
+      "total": 60,
+      "rate": 0.9333333333333333
+    },
+    "personality": {
+      "passed": 15,
+      "total": 60,
+      "rate": 0.25
+    },
+    "grounding": {
+      "passed": 33,
+      "total": 60,
+      "rate": 0.55
+    },
+    "coherence": {
+      "passed": 35,
+      "total": 60,
+      "rate": 0.5833333333333334
+    },
+    "refusal": {
+      "passed": 2,
+      "total": 6,
+      "rate": 0.3333333333333333
+    },
+    "comfort": {
+      "passed": 5,
+      "total": 12,
+      "rate": 0.4166666666666667
+    },
+    "repetitionFree": {
+      "passed": 58,
+      "total": 60,
+      "rate": 0.9666666666666667
+    },
+    "demoCopyFree": {
+      "passed": 60,
+      "total": 60,
+      "rate": 1
+    }
+  },
+  "heldOut": {
+    "speciesCompatible": {
+      "passed": 22,
+      "total": 22,
+      "rate": 1
+    },
+    "personality": {
+      "passed": 16,
+      "total": 22,
+      "rate": 0.7272727272727273
+    },
+    "grounding": {
+      "passed": 12,
+      "total": 22,
+      "rate": 0.5454545454545454
+    },
+    "coherence": {
+      "passed": 15,
+      "total": 22,
+      "rate": 0.6818181818181818
+    },
+    "refusal": {
+      "passed": 3,
+      "total": 3,
+      "rate": 1
+    },
+    "comfort": {
+      "passed": 1,
+      "total": 7,
+      "rate": 0.14285714285714285
+    },
+    "repetitionFree": {
+      "passed": 21,
+      "total": 22,
+      "rate": 0.9545454545454546
+    },
+    "demoCopyFree": {
+      "passed": 22,
+      "total": 22,
+      "rate": 1
+    }
+  },
+  "byPlan": [
+    {
+      "split": "development",
+      "variant": "none",
+      "configuration": "9b1-balanced",
+      "speciesCompatible": {
+        "passed": 9,
+        "total": 10,
+        "rate": 0.9
+      },
+      "personality": {
+        "passed": 2,
+        "total": 10,
+        "rate": 0.2
+      },
+      "grounding": {
+        "passed": 6,
+        "total": 10,
+        "rate": 0.6
+      },
+      "coherence": {
+        "passed": 7,
+        "total": 10,
+        "rate": 0.7
+      },
+      "refusal": {
+        "passed": 0,
+        "total": 1,
+        "rate": 0
+      },
+      "comfort": {
+        "passed": 1,
+        "total": 2,
+        "rate": 0.5
+      },
+      "repetitionFree": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      },
+      "demoCopyFree": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      }
+    },
+    {
+      "split": "development",
+      "variant": "one",
+      "configuration": "9b1-balanced",
+      "speciesCompatible": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      },
+      "personality": {
+        "passed": 3,
+        "total": 10,
+        "rate": 0.3
+      },
+      "grounding": {
+        "passed": 6,
+        "total": 10,
+        "rate": 0.6
+      },
+      "coherence": {
+        "passed": 6,
+        "total": 10,
+        "rate": 0.6
+      },
+      "refusal": {
+        "passed": 0,
+        "total": 1,
+        "rate": 0
+      },
+      "comfort": {
+        "passed": 1,
+        "total": 2,
+        "rate": 0.5
+      },
+      "repetitionFree": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      },
+      "demoCopyFree": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      }
+    },
+    {
+      "split": "development",
+      "variant": "two",
+      "configuration": "9b1-balanced",
+      "speciesCompatible": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      },
+      "personality": {
+        "passed": 2,
+        "total": 10,
+        "rate": 0.2
+      },
+      "grounding": {
+        "passed": 8,
+        "total": 10,
+        "rate": 0.8
+      },
+      "coherence": {
+        "passed": 8,
+        "total": 10,
+        "rate": 0.8
+      },
+      "refusal": {
+        "passed": 1,
+        "total": 1,
+        "rate": 1
+      },
+      "comfort": {
+        "passed": 1,
+        "total": 2,
+        "rate": 0.5
+      },
+      "repetitionFree": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      },
+      "demoCopyFree": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      }
+    },
+    {
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "speciesCompatible": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      },
+      "personality": {
+        "passed": 3,
+        "total": 10,
+        "rate": 0.3
+      },
+      "grounding": {
+        "passed": 5,
+        "total": 10,
+        "rate": 0.5
+      },
+      "coherence": {
+        "passed": 5,
+        "total": 10,
+        "rate": 0.5
+      },
+      "refusal": {
+        "passed": 0,
+        "total": 1,
+        "rate": 0
+      },
+      "comfort": {
+        "passed": 2,
+        "total": 2,
+        "rate": 1
+      },
+      "repetitionFree": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      },
+      "demoCopyFree": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      }
+    },
+    {
+      "split": "development",
+      "variant": "persona",
+      "configuration": "9b1-balanced",
+      "speciesCompatible": {
+        "passed": 7,
+        "total": 10,
+        "rate": 0.7
+      },
+      "personality": {
+        "passed": 2,
+        "total": 10,
+        "rate": 0.2
+      },
+      "grounding": {
+        "passed": 3,
+        "total": 10,
+        "rate": 0.3
+      },
+      "coherence": {
+        "passed": 3,
+        "total": 10,
+        "rate": 0.3
+      },
+      "refusal": {
+        "passed": 0,
+        "total": 1,
+        "rate": 0
+      },
+      "comfort": {
+        "passed": 0,
+        "total": 2,
+        "rate": 0
+      },
+      "repetitionFree": {
+        "passed": 9,
+        "total": 10,
+        "rate": 0.9
+      },
+      "demoCopyFree": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      }
+    },
+    {
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-restrained",
+      "speciesCompatible": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      },
+      "personality": {
+        "passed": 3,
+        "total": 10,
+        "rate": 0.3
+      },
+      "grounding": {
+        "passed": 5,
+        "total": 10,
+        "rate": 0.5
+      },
+      "coherence": {
+        "passed": 6,
+        "total": 10,
+        "rate": 0.6
+      },
+      "refusal": {
+        "passed": 1,
+        "total": 1,
+        "rate": 1
+      },
+      "comfort": {
+        "passed": 0,
+        "total": 2,
+        "rate": 0
+      },
+      "repetitionFree": {
+        "passed": 9,
+        "total": 10,
+        "rate": 0.9
+      },
+      "demoCopyFree": {
+        "passed": 10,
+        "total": 10,
+        "rate": 1
+      }
+    },
+    {
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "speciesCompatible": {
+        "passed": 22,
+        "total": 22,
+        "rate": 1
+      },
+      "personality": {
+        "passed": 16,
+        "total": 22,
+        "rate": 0.7272727272727273
+      },
+      "grounding": {
+        "passed": 12,
+        "total": 22,
+        "rate": 0.5454545454545454
+      },
+      "coherence": {
+        "passed": 15,
+        "total": 22,
+        "rate": 0.6818181818181818
+      },
+      "refusal": {
+        "passed": 3,
+        "total": 3,
+        "rate": 1
+      },
+      "comfort": {
+        "passed": 1,
+        "total": 7,
+        "rate": 0.14285714285714285
+      },
+      "repetitionFree": {
+        "passed": 21,
+        "total": 22,
+        "rate": 0.9545454545454546
+      },
+      "demoCopyFree": {
+        "passed": 22,
+        "total": 22,
+        "rate": 1
+      }
+    }
+  ],
+  "rows": [
+    {
+      "row": 0,
+      "index": 0,
+      "split": "development",
+      "variant": "none",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 1,
+      "index": 0,
+      "split": "development",
+      "variant": "one",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 2,
+      "index": 0,
+      "split": "development",
+      "variant": "two",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 3,
+      "index": 0,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Literal style placeholder (silly distraction), not enacted pet humor.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 4,
+      "index": 0,
+      "split": "development",
+      "variant": "persona",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 5,
+      "index": 0,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-restrained",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 6,
+      "index": 1,
+      "split": "development",
+      "variant": "one",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 7,
+      "index": 1,
+      "split": "development",
+      "variant": "two",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 8,
+      "index": 1,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 9,
+      "index": 1,
+      "split": "development",
+      "variant": "persona",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Invents an outdoor origin for the box and claims photos no longer exist.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant",
+          "unsupported-history"
+        ]
+      }
+    },
+    {
+      "row": 10,
+      "index": 1,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-restrained",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 11,
+      "index": 1,
+      "split": "development",
+      "variant": "none",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 12,
+      "index": 2,
+      "split": "development",
+      "variant": "two",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 13,
+      "index": 2,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Cat paws another cat; rambling non-joke and role confusion.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 14,
+      "index": 2,
+      "split": "development",
+      "variant": "persona",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 0,
+        "demoCopyFree": 1
+      },
+      "note": "Repeats cat-was-a-cat and meows instead of a joke.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 15,
+      "index": 2,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-restrained",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Joke rambles and stops mid-sentence at the output cap.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 16,
+      "index": 2,
+      "split": "development",
+      "variant": "none",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Addresses the human as a cat; does not deliver a joke.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 17,
+      "index": 2,
+      "split": "development",
+      "variant": "one",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Lamp motif from the demonstration intrudes into an unrelated joke request; no six-word verbatim copy.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 18,
+      "index": 3,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": 1,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 19,
+      "index": 3,
+      "split": "development",
+      "variant": "persona",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 0,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Dog meows. Exact-word validator missed the inflection.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "wrong-species"
+        ]
+      }
+    },
+    {
+      "row": 20,
+      "index": 3,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-restrained",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 21,
+      "index": 3,
+      "split": "development",
+      "variant": "none",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 0,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Both drafts pressure a tired user outdoors; correctly labeled failed answer, counted as failed on all core scores.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "pressure"
+        ]
+      }
+    },
+    {
+      "row": 22,
+      "index": 3,
+      "split": "development",
+      "variant": "one",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 23,
+      "index": 3,
+      "split": "development",
+      "variant": "two",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": 1,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 24,
+      "index": 4,
+      "split": "development",
+      "variant": "persona",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Just smile minimizes sadness; readable but weak comfort and no mischievous voice.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 25,
+      "index": 4,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-restrained",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 0,
+        "demoCopyFree": 1
+      },
+      "note": "Four meow variants and stage directions, no meaningful comfort.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "repetition"
+        ]
+      }
+    },
+    {
+      "row": 26,
+      "index": 4,
+      "split": "development",
+      "variant": "none",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": 1,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 27,
+      "index": 4,
+      "split": "development",
+      "variant": "one",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": 1,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 28,
+      "index": 4,
+      "split": "development",
+      "variant": "two",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Switches from human sadness to its own sadness without supporting the user.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 29,
+      "index": 4,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": 1,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 30,
+      "index": 5,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-restrained",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": 1,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 31,
+      "index": 5,
+      "split": "development",
+      "variant": "none",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": 0,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Ambiguous and cut off; cannot establish that refusal is respected.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 32,
+      "index": 5,
+      "split": "development",
+      "variant": "one",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": 0,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Unrelated cool-nose/cool-tail line does not acknowledge the refusal.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 33,
+      "index": 5,
+      "split": "development",
+      "variant": "two",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": 1,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 34,
+      "index": 5,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": 0,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Collar movement and tune-to-a-tune placeholder are incoherent; refusal not acknowledged.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 35,
+      "index": 5,
+      "split": "development",
+      "variant": "persona",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": 0,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Oh no and play somewhere are ambiguous about staying indoors; user/pet nose-role confusion.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 36,
+      "index": 6,
+      "split": "development",
+      "variant": "none",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 37,
+      "index": 6,
+      "split": "development",
+      "variant": "one",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 38,
+      "index": 6,
+      "split": "development",
+      "variant": "two",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 39,
+      "index": 6,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 40,
+      "index": 6,
+      "split": "development",
+      "variant": "persona",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Assistant-style definition additionally says a laptop is usually connected to a computer; ordinary knowledge error outside the game-history grounding score.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 41,
+      "index": 6,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-restrained",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 42,
+      "index": 7,
+      "split": "development",
+      "variant": "one",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Lamp/warm-nose motif transfers into a love answer; no six-word verbatim copy.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 43,
+      "index": 7,
+      "split": "development",
+      "variant": "two",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 44,
+      "index": 7,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 45,
+      "index": 7,
+      "split": "development",
+      "variant": "persona",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 0,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Dog purrs from its tail; incoherent and truncated.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "wrong-species"
+        ]
+      }
+    },
+    {
+      "row": 46,
+      "index": 7,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-restrained",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 47,
+      "index": 7,
+      "split": "development",
+      "variant": "none",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 48,
+      "index": 8,
+      "split": "development",
+      "variant": "two",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 49,
+      "index": 8,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 50,
+      "index": 8,
+      "split": "development",
+      "variant": "persona",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 51,
+      "index": 8,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-restrained",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Claims it cannot go inside; no recorded game restriction supports that.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 52,
+      "index": 8,
+      "split": "development",
+      "variant": "none",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 53,
+      "index": 8,
+      "split": "development",
+      "variant": "one",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 54,
+      "index": 9,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 55,
+      "index": 9,
+      "split": "development",
+      "variant": "persona",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 0,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Dog hisses; self-directed nose/tail stage actions, incomplete reply.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "wrong-species"
+        ]
+      }
+    },
+    {
+      "row": 56,
+      "index": 9,
+      "split": "development",
+      "variant": "compact",
+      "configuration": "9b1-restrained",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Invents garden plants, flower colors and smells from a planned-place name only.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 57,
+      "index": 9,
+      "split": "development",
+      "variant": "none",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Invents that the recorded adventure was planned for the afternoon; current time phase is not historical outing time.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 58,
+      "index": 9,
+      "split": "development",
+      "variant": "one",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 59,
+      "index": 9,
+      "split": "development",
+      "variant": "two",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 60,
+      "index": 10,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 61,
+      "index": 11,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 62,
+      "index": 12,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 63,
+      "index": 13,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Shy hesitation is identifiable, but support for the overwhelmed human is unclear and self-focused.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 64,
+      "index": 14,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Readable reassurance, but minimizing exhaustion as just the last half of the day does not establish comfort-first handling.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 65,
+      "index": 15,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": 1,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "First draft offered going outside and was rejected; quiet waiting indoors is a compatible final response, not a clear verbal acknowledgment.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 66,
+      "index": 16,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": 1,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Sleepy napping is compatible with no walk, though mostly repetitive stage directions.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 67,
+      "index": 17,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": 1,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Generic or insufficiently distinctive selected-personality behavior.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 68,
+      "index": 18,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Confusing suggestion to be alone rather than quiet companionship.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 69,
+      "index": 19,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Absurd cloud/sugar logic is treated as fictional pet banter, not a real game-state fact.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 70,
+      "index": 20,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "generic-assistant"
+        ]
+      }
+    },
+    {
+      "row": 71,
+      "index": 21,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Miso/whimper line is unrelated to the hidden sock.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 72,
+      "index": 22,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 0,
+        "demoCopyFree": 1
+      },
+      "note": "Repeated meows and questions do not supply a cushion title.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "repetition"
+        ]
+      }
+    },
+    {
+      "row": 73,
+      "index": 23,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 74,
+      "index": 24,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Self-focused contradictory homework roleplay, not a useful response to the human achievement.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 75,
+      "index": 25,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Truncated stage-role exchange and head-wagging; no reliable comfort for a difficult day.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 76,
+      "index": 26,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 1,
+        "coherence": 1,
+        "refusal": 1,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Selected personality trait is identifiable; narration/format may still be wrong.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 77,
+      "index": 27,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Self-focused future questions, truncated instead of reassuring the nervous human.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 78,
+      "index": 28,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 0,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Circular wait/help fragments; no joke or clear response to unavailable records.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 79,
+      "index": 29,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": 0,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Rejects companionship and invents a restriction on visiting the pet.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 80,
+      "index": 30,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 0,
+        "grounding": 0,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Unverified visit becomes has not been visited yet; absence of verification does not prove absence of a visit.",
+      "offlineFinalValidator": {
+        "valid": true,
+        "reasons": []
+      }
+    },
+    {
+      "row": 81,
+      "index": 31,
+      "split": "held-out",
+      "variant": "compact",
+      "configuration": "9b1-balanced",
+      "scores": {
+        "speciesCompatible": 1,
+        "personality": 1,
+        "grounding": 0,
+        "coherence": 1,
+        "refusal": null,
+        "comfort": null,
+        "repetitionFree": 1,
+        "demoCopyFree": 1
+      },
+      "note": "Invented first-person hidden-garden history with empty saved records; original validator missed I found.",
+      "offlineFinalValidator": {
+        "valid": false,
+        "reasons": [
+          "unsupported-history"
+        ]
+      }
+    }
+  ]
+}

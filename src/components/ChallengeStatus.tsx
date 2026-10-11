@@ -1,0 +1,2 @@
+import { useChallenge } from '../challenge/ChallengeContext'
+export function ChallengeStatus(){const c=useChallenge();if(!c?.state?.enabled)return null;const s=c.state;return <span className="challenge-status" role="status">{c.error?'Challenge check unavailable — protected':s.separatedAt!==null?'A chapter to remember':s.paused?'Challenge paused':s.missedDayStreak===1?'One missed day — a fresh photo resets it':'Two-day challenge on'}{s.lastQualifyingDate&&<span>Last unverified adventure photo: {s.lastQualifyingDate}</span>}</span>}
